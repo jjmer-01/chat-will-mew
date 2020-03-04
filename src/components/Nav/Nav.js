@@ -1,13 +1,15 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function Nav() {
 
     return (
         <div>
-            Nav.js
             <button>Chat Menu</button>
-            <button>Profile Menu</button>
-            <h1>chatWillMew</h1>
+            <h1>AHNChat</h1>
+            <Link to="/usermenu">
+                <button>User Profile</button>
+            </Link>  
         </div>
     )
 }
