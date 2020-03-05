@@ -31,7 +31,7 @@ class Register extends Component {
             password: password
             })
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 this.props.getUser(res.data)
                 this.props.history.push('/dash')
            })

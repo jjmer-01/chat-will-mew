@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-// import {getUser} from '../../ducks/userReducer'
-// import {connect} from 'react-redux'
-// import {withRouter} from 'react-router-dom'
+import {getUser} from '../../ducks/userReducer'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 
 class Auth extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             user_email: "",
             password: ""
@@ -22,9 +22,12 @@ class Auth extends Component {
     }
 
     handleLogin = () => {
+        const { user_email, password } = this.state
         axios.post('api/login', {
-            user_name: this.state.username,
-            password: this.state.password})
+            user_email,
+            password,
+        })
+        // console.log(`Auth line 31` + res.data)
             .then(res => {
                 this.props.getUser(res.data)
                 this.props.history.push('/dash')
@@ -40,14 +43,16 @@ class Auth extends Component {
             <input 
                 className="auth-in"
                 placeholder="email"
-                name=""
-                type="email" />
+                name="user_email"
+                type="email"
+                onChange={this.handleInput} />
             <br />
             <input 
                 className="auth-in"
                 placeholder="password"
-                name=""
-                type="password" />
+                name="password"
+                type="password"
+                onChange={(e) =>{this.handleInput(e)}} />
             <br />
             <button
                 onClick={this.handleLogin}>
@@ -65,5 +70,5 @@ class Auth extends Component {
     }
 }
 
-export default Auth
-// export default connect(null, {getUser}) (withRouter(Auth))
+// export default Auth
+export default connect(null, {getUser}) (withRouter(Auth))
