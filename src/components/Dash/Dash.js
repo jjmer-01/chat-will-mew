@@ -1,17 +1,19 @@
 import React, {Component} from 'react'
+//put axios session request in here and not in redux
+
 import {Switch, Route} from 'react-router-dom'
 import ChatRoom from '../ChatRoom/ChatRoom'
 import TaskRoom from '../TaskRoom/TaskRoom'
 import UserMenu from '../UserMenu/UserMenu'
+import Nav from '../Nav/Nav'
 
-//put axios session request in here and not in redux
 
 class Dash extends Component {
 
     // componentDidMount
 
     render() {
-        return (
+        return (   
             <div>
                 <Switch>
                     <Route path="/chatroom/:room" component={ChatRoom} />

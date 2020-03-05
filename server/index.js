@@ -37,6 +37,7 @@ app.post('/api/register', authCtrl.register)
 app.post('/api/login', authCtrl.login)
 
 //ENDPOINTS chatMenuCtrl
+// app.post('/api/chat), chatMenuCtrl.addRoom)
 // app.get('/api/room', chatMenuCtrl.getRooms)
 // app.get('/api/direct', chatMenuCtrl.getDirects)
 
