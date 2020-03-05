@@ -1,10 +1,14 @@
 // import axios from 'axios'
 
 const initialState = {
-    user_email: null,
-    first_name: null,
-    last_name: null,
-    user_title: null,
+    user: {
+        id: null,
+        user_email: '',
+        first_name: '',
+        last_name: '',
+        user_title: '',
+    }
+    
 }
 
 //get user off session

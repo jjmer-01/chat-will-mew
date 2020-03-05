@@ -7,26 +7,32 @@ module.exports = {
     
     register: async(req, res) => {
         //destructuring email & password from user input (req.body)
-        const {user_email, password, first_name, last_name, user_title} = req.body
-        const {session} = req
+        const { user_email, password, first_name, last_name, user_title } = req.body
+        console.log(req.body)
         const db = req.app.get('db').auth
 
         //check to see if user (email) exists already
         let user = await db.check_user({user_email})
-        console.log(user)
         user = user[0]
         if(user) {
             return res.status(400).send('That email is registered already. Login or forever hold your peace.')
         }
 
-        //if user doesn't exist salt the password and register_user
+        //if user doesn't exist salt & hash the password:
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
 
-        let newUser = await db.register_user({user_email, first_name, last_name, user_title, hash})
-        newUser = newUser[0]
-        session.user = newUser
-        res.status(201).send(session.user)
+        //then register user:
+        try {
+            let newUser = await db.register_user({user_email, first_name, last_name, user_title, hash})
+            newUser = newUser[0]
+            console.log('line 29' + newUser)
+            session.user = newUser
+            res.status(201).send(session.user)
+        } catch (err) {
+            return res.sendStatus(500)
+        }
+        
     },
 
     login: async(req, res) => {

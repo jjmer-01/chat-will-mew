@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import {getUser} from '../../ducks/userReducer'
 // import {connect} from 'react-redux'
 // import {withRouter} from 'react-router-dom'

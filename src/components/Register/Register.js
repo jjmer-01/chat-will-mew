@@ -22,12 +22,13 @@ class Register extends Component {
     }
 
     handleRegister = () => {
-       axios.post('/api/register', {
-            user_email: this.state.user_email,   
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            user_title: this.state.user_title,
-            password: this.state.password
+        const {user_email, first_name, last_name, user_title, password} = this.state
+        axios.post('/api/register', {
+            user_email: user_email,   
+            first_name: first_name,
+            last_name: last_name,
+            user_title: user_title,
+            password: password
             })
             .then(res => {
                 console.log(res.data)
@@ -45,32 +46,32 @@ class Register extends Component {
             <input 
                 className="auth-in"
                 placeholder="email"
-                name=""
+                name="user_email"
                 type="email"
                 onChange={this.handleInput} />
             <br />
             <input
                 className="auth-in"
                 placeholder="first name"
-                name=""
+                name="first_name"
                 onChange={this.handleInput} />
             <br />
             <input
                 className="auth-in"
                 placeholder="last name"
-                name=""
+                name="last_name"
                 onChange={this.handleInput} />
             <br />
             <input
                 className="auth-in"
                 placeholder="title"
-                name=""
+                name="user_title"
                 onChange={this.handleInput} />
             <br />
             <input 
                 className="auth-in"
                 placeholder="password"
-                name=""
+                name="password"
                 type="password"
                 onChange={(e) => {this.handleInput(e)}} />
             <br />
