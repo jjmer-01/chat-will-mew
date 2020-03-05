@@ -11,8 +11,7 @@ class Auth extends Component {
         super()
         this.state = {
             user_email: "",
-            password: "",
-            toggleRegister: false,
+            password: ""
         }
     }
 
@@ -24,42 +23,43 @@ class Auth extends Component {
 
     handleLogin = () => {
         axios.post('api/login', {
-            username: this.state.username,
+            user_name: this.state.username,
             password: this.state.password})
             .then(res => {
                 this.props.getUser(res.data)
-                this.props.history.push('/landing')
+                this.props.history.push('/dash')
             })
             .catch(err => console.log(err))
     }
 
-    // toggleRegister = (e) => {
-
-    // }
-    
-
     render() {
         return (
         <div>
-            <h1>AhnChat</h1>
+            <h1>ahnChat</h1>
+            <p>...a harmless, necessary chat.</p>
             <input 
                 className="auth-in"
                 placeholder="email"
-                name="" />
+                name=""
+                type="email" />
             <br />
             <input 
                 className="auth-in"
                 placeholder="password"
-                name="" />
+                name=""
+                type="password" />
             <br />
             <button
                 onClick={this.handleLogin}>
                 Login
                 </button>
-            <button>
-                <Link to="/register">Register</Link> 
-                </button>
-            <p>...a harmless, necessary chat.</p>
+            <p>Register here if you don't have an account:</p>
+            
+                <Link to="/register">
+                    <button>
+                    Register
+                    </button>
+                    </Link> 
         </div>
         )
     }

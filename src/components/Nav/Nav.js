@@ -6,7 +6,7 @@ function Nav() {
     return (
         <div>
             <button>Chat Menu</button>
-            <h1>AHNChat</h1>
+            <h1>ahnChat</h1>
             <Link to="/usermenu">
                 <button>User Profile</button>
             </Link>  

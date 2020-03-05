@@ -1,54 +1,94 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+import {getUser} from '../../ducks/userReducer'
+import {connect} from 'react-redux'
+import axios from 'axios'
 
 class Register extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
+            first_name: "",
+            last_name: "",
             user_email: "",
             password: "",
-            toggleRegister: true,
         }
     }
 
-    toggleLogin = (e) => {
+    handleInput = (e) => {
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
 
+    handleRegister = () => {
+       axios.post('/api/register', {
+            user_email: this.state.user_email,   
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            user_title: this.state.user_title,
+            password: this.state.password
+            })
+            .then(res => {
+                console.log(res.data)
+                this.props.getUser(res.data)
+                this.props.history.push('/dash')
+           })
+           .catch(err => console.log(err))
     }
 
     render() {
         return (
             <div>
-            <h1>AhnChat</h1>
+            <h1>ahnChat</h1>
+            <p>...a harmless, necessary chat.</p>
+            <input 
+                className="auth-in"
+                placeholder="email"
+                name=""
+                type="email"
+                onChange={this.handleInput} />
+            <br />
             <input
                 className="auth-in"
                 placeholder="first name"
-                name="" />
+                name=""
+                onChange={this.handleInput} />
             <br />
             <input
                 className="auth-in"
                 placeholder="last name"
-                name="" />
+                name=""
+                onChange={this.handleInput} />
             <br />
-            <input 
+            <input
                 className="auth-in"
-                placeholder="email"
-                name="" />
+                placeholder="title"
+                name=""
+                onChange={this.handleInput} />
             <br />
             <input 
                 className="auth-in"
                 placeholder="password"
-                name="" />
+                name=""
+                type="password"
+                onChange={(e) => {this.handleInput(e)}} />
             <br />
-            <button>
-                Login
-                </button>
-            <button>
+            <button
+                onClick={this.handleRegister}>
                 Register
                 </button>
-            <p>...a harmless, necessary chat.</p>
+            <p>Login here if you have an account:</p>
+            <Link to="/">
+                <button>
+                Login
+                </button>
+                </Link>            
         </div>
         )
     }
      
 }
 
-export default Register
+export default connect(null, {getUser})(Register)
+// export default Register

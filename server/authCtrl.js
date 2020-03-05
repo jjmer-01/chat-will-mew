@@ -1,17 +1,22 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 module.exports = {
+    // getUser: async(req, res) => {
+
+    // }, do I even need this?
+    
     register: async(req, res) => {
         //destructuring email & password from user input (req.body)
-        const {user_email, password} = req.body
+        const {user_email, password, first_name, last_name, user_title} = req.body
         const {session} = req
-        const db = req.app.get('db')
+        const db = req.app.get('db').auth
 
         //check to see if user (email) exists already
         let user = await db.check_user({user_email})
+        console.log(user)
         user = user[0]
         if(user) {
-            return res.status(400).send('Email is registered already. Login or forever hold your peace.')
+            return res.status(400).send('That email is registered already. Login or forever hold your peace.')
         }
 
         //if user doesn't exist salt the password and register_user
@@ -28,13 +33,13 @@ module.exports = {
         //destructuring email & pw from user input (req.body)
         const {user_email, password} = req.body
         const {session} = req
-        const db = req.app.get('db')
+        const db = req.app.get('db').auth
         
         //checks to see if user (email) exists already
         let user = await db.check_user({user_email})
         user = user[0]
         if(!user) {
-            return res.status(400).send("Oops! You think you registered, but that didn't happen. Hit that register button to get started!")
+            return res.status(400).send("Oops! Looks like that email isn't registered yet. Hit that register button to get started!")
         }
 
         //IF EMAIL IS AUTHENTICATED, TWO POSSIBLE OUTCOMES BELOW:

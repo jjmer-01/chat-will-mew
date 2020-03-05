@@ -6,9 +6,9 @@ import UserMenu from '../UserMenu/UserMenu'
 
 //put axios session request in here and not in redux
 
-class Landing extends Component {
+class Dash extends Component {
 
-    componentDidMount
+    // componentDidMount
 
     render() {
         return (
@@ -17,7 +17,7 @@ class Landing extends Component {
                     <Route path="/chatroom/:room" component={ChatRoom} />
                     <Route path="/taskroom" component={TaskRoom} />
                     <Route path="/usermenu" component={UserMenu} />
-                    <Route path="/landing"
+                    <Route path="/dash"
                         render={() => (
                             <div>
                                 <h2>Join a Conversation</h2>
@@ -30,4 +30,4 @@ class Landing extends Component {
     }
 }
 
-export default Landing
+export default Dash
