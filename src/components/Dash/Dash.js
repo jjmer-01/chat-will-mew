@@ -5,7 +5,6 @@ import {Switch, Route} from 'react-router-dom'
 import ChatRoom from '../ChatRoom/ChatRoom'
 import TaskRoom from '../TaskRoom/TaskRoom'
 import UserMenu from '../UserMenu/UserMenu'
-import Nav from '../Nav/Nav'
 
 
 class Dash extends Component {

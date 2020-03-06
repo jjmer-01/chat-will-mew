@@ -1,29 +1,45 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-function Nav() {
+import ChatMenu from '../ChatMenu/ChatMenu'
 
-    return (
-        <div className="nav-js">
-            <button id="show-menu-toggle">
-                Rooms
-                </button>
-            <div className="chat-menu">
-                <div>
-                    
-                </div>
-                <button id="show-newrm-toggle">
-                    New Room
+import './Nav.css'
+
+class Nav extends Component {
+    constructor() {
+        super()
+        this.state = {
+            isVisible: false,
+        }
+    }
+
+    toggleVisible = () => {
+        this.setState({
+            isVisible: !this.state.isVisible,
+        })
+    }
+
+    render() {
+        return (
+            <div className="nav-js">
+                <button 
+                id="show-menu-toggle"
+                onClick={this.toggleVisible}>
+                    Chat Menu
                     </button>
+                <div>
+                    {this.state.isVisible === false ? null : <ChatMenu />}
                 </div>
-            
-            <h1>ahnChat</h1>
-            
-            <Link to="/usermenu">
-                <button>My Profile</button>
-                </Link>
-        </div>
-    )
+
+                <h1>ahnChat</h1>
+                <Link to="/usermenu">
+                    <button>My Profile</button>
+                    </Link>
+            </div>
+        )
+    }
+    
 }
 
 export default Nav
+

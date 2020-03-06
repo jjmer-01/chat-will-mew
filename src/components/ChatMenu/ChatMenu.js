@@ -1,18 +1,43 @@
 import React, {Component} from 'react'
 
+import NewRoomForm from '../NewRoomForm/NewRoomForm'
+
 class ChatMenu extends Component {
+    constructor() {
+        super()
+        this.state = {
+            isVisible: false,
+        }
+    }
+
+    toggleVisible = () => {
+        this.setState({
+            isVisible: !this.state.isVisible,
+        })
+    }
 
     render() {
         return (
+            <div className="hide-menu" id="chat-menu">
             <div>
-                ChatMenu.js
-                <input placeholder="Search Rooms and Direct Messages" />
+                <input 
+                    placeholder="Search Threads & Direct Messages" />
+                <button>Search</button>
+                <br />
                 <button>My Tasks</button>
-                <h2>My Rooms</h2>
-                <button>Create Room</button>
-                <h2>Direct Messages</h2>
-                <button>New Direct Message</button>
-            </div>
+                <p>My Rooms</p>
+                <p>Direct Messages</p>
+                </div>
+            <button 
+                className="hide-menu" 
+                id="show-newrm-toggle"
+                onClick={this.toggleVisible}>
+                New Room
+                </button>
+                <div>
+                    { this.state.isVisible === false ? null : <NewRoomForm /> }
+                </div>
+        </div> 
         )
     }
     

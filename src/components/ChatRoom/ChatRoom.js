@@ -9,7 +9,15 @@ class ChatRoom extends Component {
             ChatRoom.js
             <Message />
             <button>New Task</button>
+            <input
+                placeholder="task"
+                type="textarea" />
+            <input
+                placeholder="due date" />
             <button>New Chat</button>
+            <input
+                placeholder="chat text"
+                type="textarea" />
 
         </div>
         )
