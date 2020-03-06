@@ -9,10 +9,11 @@ class NewRoomForm extends Component {
             room_title: "",
             room_description: "",
             isVisible: false,
+            multiValue: null,
             filterOptions: [
-                {name: "foo", label: "Foo"},
-                {name: "bar", label: "Bar"}, 
-                {name: "beb", label: "Beb"}
+                {value: "foo", label: "Foo"},
+                {value: "bar", label: "Bar"}, 
+                {value: "beb", label: "Beb"}
             ]
         }
     }
@@ -24,8 +25,10 @@ class NewRoomForm extends Component {
     }
 
     handleMultiChange = (option) => {
-        this.setState({
-            multiValue: option
+        this.setState(state => {
+            return{
+                multiValue: option
+            } 
         })
     }
 
@@ -47,6 +50,7 @@ class NewRoomForm extends Component {
                         value={this.state.multiValue}
                         options={this.state.filterOptions}
                         onChange={this.handleMultiChange}
+                        isMulti="true"
                         multi />
                 <button>Create Room</button>
             </div>
