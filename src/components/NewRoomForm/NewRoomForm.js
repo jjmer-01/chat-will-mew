@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 
+import './NewRoomForm.css'
 
 class NewRoomForm extends Component {
     constructor() {
@@ -34,8 +35,8 @@ class NewRoomForm extends Component {
 
     render() {
         return (
-            <div>
-                    <div className="newrm-form">
+            <div className="newrm-form">
+                    <div className="newrm-inputs">
                         <input 
                             placeholder="Room Name"
                             name="Room Name" />

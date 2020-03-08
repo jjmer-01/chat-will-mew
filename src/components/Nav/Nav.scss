@@ -1,4 +1,10 @@
-.hide-menu {
-    width: 95vw;
-    visibility: hidden;
+h1 {
+    color: #ffffff;
+}
+.nav-comp {
+    background-color: rgb(209, 218, 216);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

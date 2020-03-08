@@ -35,10 +35,11 @@ massive({
 //ENDPOINTS authCtrl
 app.post('/api/register', authCtrl.register)
 app.post('/api/login', authCtrl.login)
+app.post('/api/logout', authCtrl.logout)
 
 //ENDPOINTS chatMenuCtrl
 // app.get('/api/users', chatMenuCtrl.getUsers)
-app.post('/api/chat', chatMenuCtrl.addRoom)
+// app.post('/api/chat', chatMenuCtrl.addRoom)
 // app.get('/api/room', chatMenuCtrl.getRooms)
 // app.get('/api/direct', chatMenuCtrl.getDirects)
 

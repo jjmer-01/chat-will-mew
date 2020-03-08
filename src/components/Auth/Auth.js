@@ -5,6 +5,8 @@ import {getUser} from '../../ducks/userReducer'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
+import './Auth.css'
+
 
 class Auth extends Component {
     constructor(props) {
@@ -37,34 +39,36 @@ class Auth extends Component {
 
     render() {
         return (
-        <div>
+        <div className="auth-comp">
             <h1>ahnChat</h1>
-            <p>...a harmless, necessary chat.</p>
+            
+            <label htmlFor="user_email">EMAIL: 
             <input 
                 className="auth-in"
                 placeholder="email"
                 name="user_email"
                 type="email"
                 onChange={this.handleInput} />
-            <br />
+                </label>
+            <label htmlFor="password">PASSWORD: 
             <input 
                 className="auth-in"
                 placeholder="password"
                 name="password"
                 type="password"
                 onChange={(e) =>{this.handleInput(e)}} />
-            <br />
+                </label>
             <button
                 onClick={this.handleLogin}>
-                Login
+                LOGIN
                 </button>
-            <p>Register here if you don't have an account:</p>
             
-                <Link to="/register">
+            <Link to="/register">
                     <button>
-                    Register
+                    REGISTER
                     </button>
                     </Link> 
+            <h2>a harmless, necessary chat</h2>
         </div>
         )
     }

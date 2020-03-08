@@ -18,7 +18,7 @@ module.exports = {
          const { room_title, room_description, user_id } = req.body
          const dbObj = req.app.get('db').rooms
          const newRoom = await db.create_room
-         let newRoom = newRoom[0]
+         newRoom = newRoom[0]
          let roomId = null
 
          dbObj.create_room([room_title, room_description])

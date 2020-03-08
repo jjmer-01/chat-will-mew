@@ -1,0 +1,58 @@
+
+h1 {
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
+    font-weight: 300;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    // padding: 10px;
+    // border: 2px dotted#2E2A39;
+}
+
+h2 {
+    font-family: 'Shrikhand', cursive;
+    font-size: 20px;
+    font-weight: 200;
+    color: white;
+    margin-top: 30px;
+}
+
+p {
+    font-family: 'Cutive Mono', monospace;
+    font-weight: 800;
+    color: #2E2A39;
+    margin: 5px;
+}
+
+label {
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color:#2E2A39;
+    margin: 5px;
+}
+
+button {
+    font-family: 'Dosis', sans-serif;
+    font-size: 1em;
+    font-weight: 800;
+    background-color: white;
+    color: #2E2A39;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+input {
+    // border-radius: 10px;
+    width: 175px;
+    height: 20px;
+}
+
+.auth-comp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

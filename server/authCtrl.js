@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 module.exports = {
     // getUser: async(req, res) => {
 
-    // }, do I even need this?
+    // }, 
     
     register: async(req, res) => {
         //destructuring email & password from user input (req.body)
@@ -62,5 +62,11 @@ module.exports = {
             //PASSWORD INCORRECT
             res.status(401).send('Incorrect username or password.')
         }
+    },
+
+    logout: async(req, res) => {
+        console.log('hit logout')
+        if (req.session) req.session.destroy()
+        return res.sendStatus(200)
     }
 }

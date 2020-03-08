@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import Message from '../Message/Message'
 
+import './ChatRoom.css'
+
 class ChatRoom extends Component {
 
     render() {
         return (
-        <div>
+        <div className="chat-room-comp">
             ChatRoom.js
             <Message />
             <button>New Task</button>

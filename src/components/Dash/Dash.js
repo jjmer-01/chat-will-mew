@@ -6,6 +6,7 @@ import ChatRoom from '../ChatRoom/ChatRoom'
 import TaskRoom from '../TaskRoom/TaskRoom'
 import UserMenu from '../UserMenu/UserMenu'
 
+import './Dash.css'
 
 class Dash extends Component {
 
@@ -13,7 +14,7 @@ class Dash extends Component {
 
     render() {
         return (   
-            <div>
+            <div className="dash-comp">
                 <Switch>
                     <Route path="/chatroom/:room" component={ChatRoom} />
                     <Route path="/taskroom" component={TaskRoom} />

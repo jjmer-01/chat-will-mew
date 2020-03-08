@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACP,gBAAgB,EAAE,KAAK;EACvB,KAAK,EAAE,KAAK;CACf",
+    "sources": [
+        "NewRoomForm.scss"
+    ],
+    "names": [],
+    "file": "NewRoomForm.css"
+}

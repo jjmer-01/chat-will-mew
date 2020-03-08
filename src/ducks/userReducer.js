@@ -1,12 +1,15 @@
-// import axios from 'axios'
+import axios from 'axios'
 
 const initialState = {
     user: {
-        id: null,
-        user_email: '',
+        user_id: null,
+        user_email: null,
         first_name: '',
         last_name: '',
         user_title: '',
+        loading: false,
+        error: false,
+        errorMessage: '',
     }
     
 }
@@ -24,10 +27,12 @@ export function getUser(userObj) {
 }
 
 export function logout() {
-    return {
+    let action = {
         type: LOGOUT,
-        payload: null
+        payload: axios.post('api/logout') 
+        //Where to put the .then to redirect to '/' ?
     }
+    return action
 }
 
 
@@ -44,8 +49,10 @@ export default function userReducer(state = initialState, action) {
                     user_title: payload.user_title,
                 }
             }
-        case LOGOUT:
-            return {...state, user_email: {}}
+        case LOGOUT + '_PENDING':
+            return {...state, }
+        case LOGOUT + '_FULFILLED':
+            return {}
         default:
             return state
     }

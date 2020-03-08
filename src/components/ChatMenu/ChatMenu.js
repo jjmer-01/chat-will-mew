@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 
 import NewRoomForm from '../NewRoomForm/NewRoomForm'
 
+
 class ChatMenu extends Component {
     constructor() {
         super()
