@@ -41,34 +41,38 @@ class Auth extends Component {
         return (
         <div className="auth-comp">
             <h1>ahnChat</h1>
-            
-            <label htmlFor="user_email">EMAIL: 
-            <input 
-                className="auth-in"
-                placeholder="email"
-                name="user_email"
-                type="email"
-                onChange={this.handleInput} />
-                </label>
-            <label htmlFor="password">PASSWORD: 
-            <input 
-                className="auth-in"
-                placeholder="password"
-                name="password"
-                type="password"
-                onChange={(e) =>{this.handleInput(e)}} />
-                </label>
-            <button
-                onClick={this.handleLogin}>
-                LOGIN
-                </button>
-            
-            <Link to="/register">
-                    <button>
-                    REGISTER
-                    </button>
-                    </Link> 
             <h2>a harmless, necessary chat</h2>
+            <div className="auth-form">
+                <label htmlFor="user_email">EMAIL: 
+                <input 
+                    className="auth-in"
+                    placeholder="email"
+                    name="user_email"
+                    type="email"
+                    onChange={this.handleInput} />
+                    </label>
+                <label htmlFor="password">PASSWORD: 
+                <input 
+                    className="auth-in"
+                    placeholder="password"
+                    name="password"
+                    type="password"
+                    onChange={(e) =>{this.handleInput(e)}} />
+                    </label>
+                <div className="auth-buttons">
+                    <button
+                        onClick={this.handleLogin}>
+                        LOGIN
+                        </button>
+                    
+                    <Link to="/register">
+                            <button>
+                            REGISTER
+                            </button>
+                            </Link> 
+                </div>
+                
+            </div> 
         </div>
         )
     }

@@ -1,18 +1,13 @@
 module.exports = {
-    // getUsers: async(req, res) => {
-    //     const {id} = req.params
-    //     // const { first_name, last_name, user_title } = req.body
-    //     const db = req.app.get('db').search
-    //     const users = await db.search_users(id)
-    //     if(users[0]) {
-    //         users.forEach((element, index) => {
-    //             users[index].first_name = element.first_name()
-    //         })
-    //         res.status(200).send(users)
-    //     } else {
-    //         res.sendStatus(500)
-    //     }
-    // },
+    getUsers: async(req, res) => {
+        const db = req.app.get('db').search
+        const users = await db.get_users()
+        if(users[0]) {
+            res.status(200).send(users)
+        } else {
+            res.sendStatus(500)
+        }
+    },
 
      addRoom: async(req, res) => {
          const { room_title, room_description, user_id } = req.body

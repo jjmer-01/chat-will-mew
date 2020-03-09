@@ -1,9 +1,14 @@
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 h1 {
   font-family: 'Monoton', cursive;
   font-size: 50px;
   font-weight: 300;
   margin-top: 100px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -11,7 +16,7 @@ h2 {
   font-size: 20px;
   font-weight: 200;
   color: white;
-  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 p {
@@ -36,6 +41,7 @@ button {
   background-color: white;
   color: #2E2A39;
   margin: 5px;
+  width: 200px;
   padding: 5px;
   border-radius: 10px;
 }
@@ -59,5 +65,38 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.auth-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.auth-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
 }
 /*# sourceMappingURL=Auth.css.map */

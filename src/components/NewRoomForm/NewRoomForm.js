@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
+// import Async, { makeAsyncSelect } from 'react-select/async'
 
 import './NewRoomForm.css'
+import axios from 'axios'
 
 class NewRoomForm extends Component {
     constructor() {
@@ -11,12 +13,23 @@ class NewRoomForm extends Component {
             room_description: "",
             isVisible: false,
             multiValue: null,
-            filterOptions: [
-                {value: "foo", label: "Foo"},
-                {value: "bar", label: "Bar"}, 
-                {value: "beb", label: "Beb"}
-            ]
+            //only strings of names
+            filterOptions: [],
+            //objects with names, titles, and id
+            userData: []
         }
+    }
+
+    componentDidMount = () => {
+        this.getUsers()
+    }
+
+    getUsers = () => {
+        axios.get('/api/users')
+        .then(res => {this.setState({ 
+            filterOptions: res.data.map(e=>({label: `${e.first_name} ${e.last_name}`, value: e}))}
+            )})
+        .catch( err => console.log(err))
     }
 
     handleInput = (e) => {
@@ -45,14 +58,17 @@ class NewRoomForm extends Component {
                             placeholder="Room Description"
                             name="Room Name" />
                     </div>
-                    <Select 
-                        name="filters"
-                        placeholder="Select Room Members"
-                        value={this.state.multiValue}
-                        options={this.state.filterOptions}
-                        onChange={this.handleMultiChange}
-                        isMulti="true"
-                        multi />
+                    <div className="react-select-container">
+                        <Select
+                            name="filters"
+                            placeholder="Select Room Members"
+                            multiValue={this.state.multiValue} 
+                            options={this.state.filterOptions}
+                            onChange={this.handleMultiChange}
+                            isMulti={true}
+                            multi />
+                    </div>
+                    
                 <button>Create Room</button>
             </div>
         )

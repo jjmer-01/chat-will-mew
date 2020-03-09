@@ -1,12 +1,14 @@
+img {
+    object-fit: cover;
+}
+
 
 h1 {
     font-family: 'Monoton', cursive;
     font-size: 50px;
     font-weight: 300;
     margin-top: 100px;
-    margin-bottom: 100px;
-    // padding: 10px;
-    // border: 2px dotted#2E2A39;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -14,7 +16,7 @@ h2 {
     font-size: 20px;
     font-weight: 200;
     color: white;
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 p {
@@ -39,6 +41,7 @@ button {
     background-color: white;
     color: #2E2A39;
     margin: 5px;
+    width: 200px;
     padding: 5px;
     border-radius: 10px;
 }
@@ -56,3 +59,17 @@ input {
     align-items: center;
 }
 
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

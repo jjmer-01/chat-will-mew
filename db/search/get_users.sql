@@ -1,0 +1,1 @@
+SELECT first_name, last_name, user_title FROM users;

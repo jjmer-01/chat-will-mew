@@ -16,6 +16,7 @@ const initialState = {
 
 //get user off session
 const GET_USER = 'GET_USER'
+const GET_USERS = 'GET_USERS'
 //get user from session
 const LOGOUT = 'LOGOUT'
 
@@ -26,10 +27,18 @@ export function getUser(userObj) {
     }
 }
 
+export function getUsers() {
+    return {
+        type: GET_USERS,
+        payload: axios.get('/api/users')
+    }
+}
+
+
 export function logout() {
     let action = {
         type: LOGOUT,
-        payload: axios.post('api/logout') 
+        payload: axios.post('/api/logout') 
         //Where to put the .then to redirect to '/' ?
     }
     return action
@@ -49,6 +58,8 @@ export default function userReducer(state = initialState, action) {
                     user_title: payload.user_title,
                 }
             }
+        case GET_USERS:
+            return {...state, user: {first_name: payload.first_name, last_name: payload.last_name}}
         case LOGOUT + '_PENDING':
             return {...state, }
         case LOGOUT + '_FULFILLED':
