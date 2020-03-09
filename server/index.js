@@ -39,8 +39,8 @@ app.post('/api/logout', authCtrl.logout)
 
 //ENDPOINTS chatMenuCtrl
 app.get('/api/users', chatMenuCtrl.getUsers)
-// app.post('/api/chat', chatMenuCtrl.addRoom)
-// app.get('/api/room', chatMenuCtrl.getRooms)
+app.post('/api/room', chatMenuCtrl.addRoom)
+app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
 // app.get('/api/direct', chatMenuCtrl.getDirects)
 
 //ENDPOINTS chatRoomCtrl

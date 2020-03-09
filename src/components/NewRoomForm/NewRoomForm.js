@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-// import Async, { makeAsyncSelect } from 'react-select/async'
 
 import './NewRoomForm.css'
 import axios from 'axios'
@@ -27,7 +26,10 @@ class NewRoomForm extends Component {
     getUsers = () => {
         axios.get('/api/users')
         .then(res => {this.setState({ 
-            filterOptions: res.data.map(e=>({label: `${e.first_name} ${e.last_name}`, value: e}))}
+            filterOptions: res.data.map(e=>({
+                label: `${e.first_name} ${e.last_name}, ${e.user_title}`, 
+                value: e
+                }))}
             )})
         .catch( err => console.log(err))
     }
@@ -46,7 +48,23 @@ class NewRoomForm extends Component {
         })
     }
 
+
+    handleCreateRoom = () => { 
+        let user_id = this.state.multiValue.map(e => e.user_id)
+        // console.log(this.state.room_title, this.state.room_description)
+        console.log(`hit multivalue ${this.state.multiValue}`)
+        axios.post('/api/room', {
+            room_title: this.state.room_title,
+            room_description: this.state.room_description,
+            user_id: user_id
+        })
+        .then(res => {
+            console.log(res.data)
+        })
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div className="newrm-form">
                     <div className="newrm-inputs">
@@ -61,6 +79,7 @@ class NewRoomForm extends Component {
                     <div className="react-select-container">
                         <Select
                             name="filters"
+                            key={this.state.user_id}
                             placeholder="Select Room Members"
                             multiValue={this.state.multiValue} 
                             options={this.state.filterOptions}
@@ -69,7 +88,8 @@ class NewRoomForm extends Component {
                             multi />
                     </div>
                     
-                <button>Create Room</button>
+                <button
+                    onClick={() => this.handleCreateRoom()}>Create Room</button>
             </div>
         )
     }
