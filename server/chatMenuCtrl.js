@@ -32,18 +32,17 @@ module.exports = {
 
    },
 
+  
    getRooms: async (req, res) => {
         const {user_id} = req.params
         const dbObj = req.app.get('db').rooms
-        const rooms = await dbObj.get_my_rooms(user_id)
+        const rooms = await dbObj.get_rooms({user_id})
         if(rooms[0]) {
-            rooms.forEach((index) => {
-                rooms[index].room_title
-            })
             res.status(200).send(rooms)
-        } else {
-            res.sendStatus(500)
+            console.log(rooms)
         }
     },
+
+    
    
 }

@@ -12,7 +12,7 @@ CREATE TABLE users (
 CREATE TABLE rooms (
     room_id SERIAL PRIMARY KEY,
     room_title VARCHAR(40),
-    room_description VARCHAR(255)
+    room_description VARCHAR(255),
 )
 
 CREATE TABLE room_users (
