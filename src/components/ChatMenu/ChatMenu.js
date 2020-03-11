@@ -1,14 +1,20 @@
 import React, {Component} from 'react'
+import { connect, useStore } from 'react-redux';
+import { getRooms } from '../../ducks/roomReducer'
 
 import NewRoomForm from '../NewRoomForm/NewRoomForm'
 
 
 class ChatMenu extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             isVisible: false,
         }
+    }
+    
+    componentDidMount() {
+        this.props.getRooms(this.props.id)
     }
 
     toggleVisible = () => {
@@ -18,6 +24,7 @@ class ChatMenu extends Component {
     }
 
     render() {
+
         return (
             <div className="hide-menu" id="chat-menu">
             <div>
@@ -26,8 +33,17 @@ class ChatMenu extends Component {
                 <button>Search</button>
                 <br />
                 <button>My Tasks</button>
-                <p>My Rooms</p>
-                <p>Direct Messages</p>
+                <h2>My Rooms</h2>
+                <ul>
+                    {this.props.rooms.map(rooms => {
+                        console.log(this.props.roomReducer)
+                        return (
+                            <div key={rooms.room_id} className="rooms-list"> 
+                                <li>{rooms.room_title}</li>
+                            </div>
+                        )
+                    })}
+                </ul>
                 </div>
             <button 
                 className="hide-menu" 
@@ -44,4 +60,13 @@ class ChatMenu extends Component {
     
 }
 
-export default ChatMenu
+const mapStateToProps = reduxState => ({
+    id: reduxState.userReducer.user.id,
+    rooms: reduxState.roomReducer.rooms
+})
+
+const mapDispatchToProps = {
+    getRooms
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatMenu)

@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
+import { withRouter } from 'react-router'
 
 import './NewRoomForm.css'
 import axios from 'axios'
 
 class NewRoomForm extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             room_title: "",
             room_description: "",
             isVisible: false,
-            multiValue: null,
+            multiValue: [],
             //only strings of names
             filterOptions: [],
             //objects with names, titles, and id
@@ -41,25 +42,23 @@ class NewRoomForm extends Component {
     }
 
     handleMultiChange = (option) => {
-        this.setState(state => {
-            return{
-                multiValue: option
-            } 
-        })
+        this.state.multiValue.push(option)
     }
 
 
-    handleCreateRoom = () => { 
-        let user_id = this.state.multiValue.map(e => e.user_id)
-        // console.log(this.state.room_title, this.state.room_description)
+    handleCreateRoom = (props) => { 
+        let users = this.state.multiValue
         console.log(`hit multivalue ${this.state.multiValue}`)
         axios.post('/api/room', {
             room_title: this.state.room_title,
             room_description: this.state.room_description,
-            user_id: user_id
+            user_id: users
         })
         .then(res => {
+            //what do you want to have happen once the chat room is created? You can push to the route and go into the room, or give the user a success message
             console.log(res.data)
+            this.props.history.push(`/chatroom/${res.data.room_id}`)
+            console.log(this.props.history)
         })
     }
 
@@ -89,10 +88,10 @@ class NewRoomForm extends Component {
                     </div>
                     
                 <button
-                    onClick={() => this.handleCreateRoom()}>Create Room</button>
+                    onClick={() => this.handleCreateRoom(this.props)}>Create Room</button>
             </div>
         )
     }
 }
 
-export default NewRoomForm
+export default withRouter(NewRoomForm)

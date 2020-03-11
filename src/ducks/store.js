@@ -1,6 +1,13 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import promiseMiddleware from 'redux-promise-middleware'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import userReducer from './userReducer';
-import { applyMiddleware } from 'redux';
+import roomReducer from './roomReducer';
 
 
-export default createStore(userReducer, applyMiddleware())
+const rootReducer = combineReducers({
+    userReducer,
+    roomReducer
+})
+
+export default createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware)))

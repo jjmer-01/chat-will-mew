@@ -8,6 +8,8 @@ const express = require('express')
     messageCtrl = require('./messageCtrl')
     userMenuCtrl = require('./userMenuCtrl')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
+// const socketIo = require('socket.io')
+// const axios = require('axios')
 
 const app = express()
 
@@ -45,7 +47,7 @@ app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
 
 //ENDPOINTS chatRoomCtrl
 // app.get('/api/chat', chatRoomCtrl.getChats)
-// app.get('/api/chat', chatRoomCtrl.getTasks)
+// app.get('/api/tasks', chatRoomCtrl.getTasks)
 
 //ENDPOINTS messageCtrl
 // app.post('/api/chat', messageCtrl.addChat)
