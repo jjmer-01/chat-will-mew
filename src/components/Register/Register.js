@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import {getUser} from '../../ducks/userReducer'
-import {connect} from 'react-redux'
 import axios from 'axios'
+import { Link, withRouter } from 'react-router-dom'
+import { getUser } from '../../ducks/userReducer'
+import { connect } from 'react-redux'
+
 
 class Register extends Component {
     constructor(props) {
@@ -91,5 +92,5 @@ class Register extends Component {
      
 }
 
-export default connect(null, {getUser})(Register)
+export default connect(null, { getUser }) (withRouter(Register))
 // export default Register

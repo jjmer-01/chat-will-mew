@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-import { withRouter } from 'react-router'
+import { Link, withRouter } from 'react-router'
+import { getUser } from '../../ducks/userReducer'
+import { connect } from 'react-redux'
 
 import './NewRoomForm.css'
 import axios from 'axios'
@@ -48,6 +50,9 @@ class NewRoomForm extends Component {
 
     handleCreateRoom = (props) => { 
         let users = this.state.multiValue
+        // ((user, i) => user.user_id)
+        
+        // console.log(this.state.room_title, this.state.room_description)
         console.log(`hit multivalue ${this.state.multiValue}`)
         axios.post('/api/room', {
             room_title: this.state.room_title,
