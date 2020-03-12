@@ -1,20 +1,19 @@
 import React, {Component} from 'react'
 
-class Message extends Component {
+function Message(props) {
+    const {first_name, last_name} = props.mess
 
-    render() {
         return (
             <div>
                 Message.js
                 <p>User image</p>
-                <h3>User first name and last name</h3>
+                    <h3>{first_name} {last_name}</h3>
                 <p>Message Timestamp</p>
                 <p>Message Text</p>
                 <button>Edit</button>
                 <button>Delete</button>
             </div>
         )
-    }
     
 }
 

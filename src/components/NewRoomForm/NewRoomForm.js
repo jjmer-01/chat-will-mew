@@ -61,9 +61,9 @@ class NewRoomForm extends Component {
         })
         .then(res => {
             //what do you want to have happen once the chat room is created? You can push to the route and go into the room, or give the user a success message
-            console.log(res.data)
+            // console.log(res.data)
             this.props.history.push(`/chatroom/${res.data.room_id}`)
-            console.log(this.props.history)
+            // console.log(this.props.history)
         })
     }
 

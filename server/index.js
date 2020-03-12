@@ -9,7 +9,7 @@ const express = require('express')
     userMenuCtrl = require('./userMenuCtrl')
     socket = require('socket.io') //sockets
     // bodyParser = require('body-parser') //sockets?? Didn't need this for the `Chatting on` message to show
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
     // const socketIo = require('socket.io')
     // const axios = require('axios')
     
@@ -47,15 +47,16 @@ app.post('/api/logout', authCtrl.logout)
 app.get('/api/users', chatMenuCtrl.getUsers)
 app.post('/api/room', chatMenuCtrl.addRoom)
 app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
-// app.get('/api/direct', chatMenuCtrl.getDirects)
-
-//ENDPOINTS chatRoomCtrl
-// app.get('/api/chat', chatRoomCtrl.getChats)
-// app.get('/api/tasks', chatRoomCtrl.getTasks)
 
 //ENDPOINTS userMenuCtrl
 // app.post('/api/logout', userMenuCtrl.logout)
 // app.put('/api/user/:userId', userMenuCtrl.editUser)
+
+//REPLACE WITH SOCKET ENDPOINTS
+// app.post('/api/chat', messageCtrl.addChat)
+// app.post('/api/chat', messageCtrl.addTask)
+// app.put('/api/chat/:messageId', messageCtrl.editMessage)
+// app.delete('/api/chat/:messageId', messageCtrl.deleteMessage)
 
 //ENDPOINTS messageCtrl
 //SOCKETS
@@ -71,19 +72,20 @@ io.on('connection', socket => {
         console.log("Room joined", room_id )
         let room = await dbObj.rooms.get_a_room({ room_id: room_id }) //should put this info in the room name placeholder when page loads
         let chats = await dbObj.messages.get_chats({ room_id: room_id }) //should get all chats with this room id when page loads
-        socket.join(room) //.join method subscribes user to the room we pulled from the database query get_a_room above.
-        io.to(room).emit('Broadcast: Room Joined', chats) // I think using io instead of socket sends the message to everyone in the room including the sender. "to" specifies the room
+        console.log(room)
+        socket.join(room[0].room_id) //.join method subscribes user to the room we pulled from the database query get_a_room above.
+        io.to(room[0].room_id).emit('room joined', { room: room[0], chats }) // I think using io instead of socket sends the message to everyone in the room including the sender. "to" specifies the room
         //.emit is a method that broadcasts our message "Broadcast: Room Joined" and our chats
     })
-    //get chats
+    //add chats
     socket.on('message sent', async data => {
         const { room_id, user_id, message_text } = data
         const dbObj = app.get('db')
         await dbObj.messages.add_chat({ room_id: room_id, user_id, message_text })
         let chats = await db.messages.get_chats({ room_id: room_id })
-        socket.emit('Broadcast: Chat Dispatched', chats)
+        socket.emit('chat dispatched', chats)
     })
-    //get tasks
+    //add tasks
     socket.on('task sent', async data => {
         const { room_id, user_id, message_text, assigned_to, due_date } = data
         const dbObj = app.get('db')
@@ -100,11 +102,5 @@ io.on('connection', socket => {
 
     //delete chat and task
 
-    //REPLACE WITH SOCKET ENDPOINTS
-    // app.post('/api/chat', messageCtrl.addChat)
-    // app.put('/api/chat/:chatId', messageCtrl.editChat)
-    // app.delete('/api/chat/:chatId', messageCtrl.deleteChat)
-    // app.post('/api/chat', messageCtrl.addTask)
-    // app.put('/api/chat/:chatId', messageCtrl.editTask)
-    // app.delete('/api/chat/:chatId', messageCtrl.deleteTask)
+
 })
