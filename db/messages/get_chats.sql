@@ -7,7 +7,7 @@ SELECT
     m.due_date, 
     m.is_complete,
     u.first_name,
-    u.last_name,
+    u.last_name
 FROM messages m
 FULL JOIN users u ON m.user_id = u.user_id
-WHERE m.room_id = ${room_id}
+WHERE m.room_id = ${room_id};

@@ -1,3 +1,4 @@
+
 INSERT INTO messages (
     message_text,
     user_id,
@@ -26,4 +27,4 @@ RETURNING
     is_task,
     assigned_to,
     due_date,
-    is_complete
+    is_complete;

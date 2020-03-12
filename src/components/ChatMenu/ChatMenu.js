@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import { connect, useStore } from 'react-redux';
+import { connect } from 'react-redux';
 import { getRooms } from '../../ducks/roomReducer'
 
 import NewRoomForm from '../NewRoomForm/NewRoomForm'
+import './ChatMenu.css'
 
 
 class ChatMenu extends Component {
@@ -26,34 +27,34 @@ class ChatMenu extends Component {
     render() {
 
         return (
-            <div className="hide-menu" id="chat-menu">
-            <div>
-                <input 
-                    placeholder="Search Threads & Direct Messages" />
-                <button>Search</button>
-                <br />
-                <button>My Tasks</button>
-                <h2>My Rooms</h2>
-                <ul>
-                    {this.props.rooms.map(rooms => {
-                        console.log(this.props.roomReducer)
-                        return (
-                            <div key={rooms.room_id} className="rooms-list"> 
-                                <li>{rooms.room_title}</li>
-                            </div>
-                        )
-                    })}
-                </ul>
-                </div>
-            <button 
-                className="hide-menu" 
-                id="show-newrm-toggle"
-                onClick={this.toggleVisible}>
-                New Room
-                </button>
+            <div className="chat-menu-comp hide-menu" id="chat-menu">
                 <div>
-                    { this.state.isVisible === false ? null : <NewRoomForm /> }
+                    <input 
+                        placeholder="Search Threads & Direct Messages" />
+                    <button>Search</button>
+                        <br />
+                    <button>My Tasks</button>
+                        <h2>My Rooms</h2>
+                    <ul>
+                        {this.props.rooms.map(rooms => {
+                            console.log(this.props.roomReducer)
+                            return (
+                                <div key={rooms.room_id} className="rooms-list"> 
+                                    <li>{rooms.room_title}</li>
+                                </div>
+                            )
+                        })}
+                    </ul>
                 </div>
+                    <button 
+                        className="hide-menu" 
+                        id="show-newrm-toggle"
+                        onClick={this.toggleVisible}>
+                        New Room
+                        </button>
+                    <div>
+                        { this.state.isVisible === false ? null : <NewRoomForm /> }
+                    </div>
         </div> 
         )
     }

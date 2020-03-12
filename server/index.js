@@ -7,13 +7,17 @@ const express = require('express')
     chatRoomCtrl = require('./chatRoomCtrl')
     messageCtrl = require('./messageCtrl')
     userMenuCtrl = require('./userMenuCtrl')
+    socket = require('socket.io') //sockets
+    // bodyParser = require('body-parser') //sockets?? Didn't need this for the `Chatting on` message to show
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
-// const socketIo = require('socket.io')
-// const axios = require('axios')
-
+    // const socketIo = require('socket.io')
+    // const axios = require('axios')
+    
 const app = express()
-
+    
 app.use(express.json())
+const io = socket(app.listen(SERVER_PORT, () => console.log(`Chatting on ${SERVER_PORT}`))) // sockets: hd to declare after the server port I think?
+// app.use(bodyParser.json()) //sockets??
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -30,7 +34,7 @@ massive({
     }
 }).then(db => {
     app.set('db', db)
-    app.listen(SERVER_PORT || 4020, () => console.log(`Server running on ${SERVER_PORT}`))
+    // app.listen(SERVER_PORT || 4020, () => console.log(`Server running on ${SERVER_PORT}`)) //moved to const io above.
     console.log('Database Connected')
 })
 
@@ -49,28 +53,58 @@ app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
 // app.get('/api/chat', chatRoomCtrl.getChats)
 // app.get('/api/tasks', chatRoomCtrl.getTasks)
 
-//ENDPOINTS messageCtrl
-// app.post('/api/chat', messageCtrl.addChat)
-// app.put('/api/chat/:chatId', messageCtrl.editChat)
-// app.delete('/api/chat/:chatId', messageCtrl.deleteChat)
-// app.post('/api/chat', messageCtrl.addTask)
-// app.put('/api/chat/:chatId', messageCtrl.editTask)
-// app.delete('/api/chat/:chatId', messageCtrl.deleteTask)
-
 //ENDPOINTS userMenuCtrl
 // app.post('/api/logout', userMenuCtrl.logout)
 // app.put('/api/user/:userId', userMenuCtrl.editUser)
 
+//ENDPOINTS messageCtrl
+//SOCKETS
 
-//SOCKETS SHIT:
-// // var app = require('express') //sockets
-// // var http = require('http').createServer(app) //sockets
+io.on('connection', socket => {
+    console.log('User Connected')
 
-// // app.length('/', function(req, res) {//sockets
-// //     res.send('<h1>Hello World Socket Shit</h1>')
-// // })
+    //join room, pull up chats
+    socket.on('join room', async data => {
+        const { room_id } = data,
+        dbObj = app.get('db')
 
-// // http.listen(SERVER_PORT, function(){//sockets
-// //     console.log(`Listening on server port${SERVER_PORT}`)
-// // })
-// .
+        console.log("Room joined", room_id )
+        let room = await dbObj.rooms.get_a_room({ room_id: room_id }) //should put this info in the room name placeholder when page loads
+        let chats = await dbObj.messages.get_chats({ room_id: room_id }) //should get all chats with this room id when page loads
+        socket.join(room) //.join method subscribes user to the room we pulled from the database query get_a_room above.
+        io.to(room).emit('Broadcast: Room Joined', chats) // I think using io instead of socket sends the message to everyone in the room including the sender. "to" specifies the room
+        //.emit is a method that broadcasts our message "Broadcast: Room Joined" and our chats
+    })
+    //get chats
+    socket.on('message sent', async data => {
+        const { room_id, user_id, message_text } = data
+        const dbObj = app.get('db')
+        await dbObj.messages.add_chat({ room_id: room_id, user_id, message_text })
+        let chats = await db.messages.get_chats({ room_id: room_id })
+        socket.emit('Broadcast: Chat Dispatched', chats)
+    })
+    //get tasks
+    socket.on('task sent', async data => {
+        const { room_id, user_id, message_text, assigned_to, due_date } = data
+        const dbObj = app.get('db')
+        await dbObj.messages.add_task({ 
+            room_id: room_id, 
+            user_id, 
+            message_text, 
+            assigned_to, 
+            due_date 
+        })
+        let tasks = await db.messages.get_tasks({user_id: user_id})
+    })
+    //edit chat and task
+
+    //delete chat and task
+
+    //REPLACE WITH SOCKET ENDPOINTS
+    // app.post('/api/chat', messageCtrl.addChat)
+    // app.put('/api/chat/:chatId', messageCtrl.editChat)
+    // app.delete('/api/chat/:chatId', messageCtrl.deleteChat)
+    // app.post('/api/chat', messageCtrl.addTask)
+    // app.put('/api/chat/:chatId', messageCtrl.editTask)
+    // app.delete('/api/chat/:chatId', messageCtrl.deleteTask)
+})

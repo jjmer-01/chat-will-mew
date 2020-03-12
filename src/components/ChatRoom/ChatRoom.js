@@ -37,10 +37,15 @@ class ChatRoom extends Component {
                 {this.state.taskVisible === false ? null :
                     <>
                     <input
+                        type="date"
+                        placeholder="task due date" />
+                    <input
+                        type="text"
+                        placeholder="Assigned To Search Placeholder" />
+                    <input
                         placeholder="task"
                         type="textarea" />
-                    <input
-                        placeholder="due date" />
+                    <button>Submit</button>
                     </>
                 }
             </div>
@@ -50,9 +55,12 @@ class ChatRoom extends Component {
                 </button>
             <div>
                 {this.state.chatVisible === false ? null :
+                    <>
                     <input
                         placeholder="chat text"
                         type="textarea" />
+                    <button>Submit</button>
+                    </>
                 }
             </div>
             
