@@ -37,7 +37,7 @@ class ChatMenu extends Component {
                         <h2>My Rooms</h2>
                     <ul>
                         {this.props.rooms.map(rooms => {
-                            console.log(this.props.roomReducer)
+                            // console.log(this.props.roomReducer)
                             return (
                                 <div key={rooms.room_id} className="rooms-list"> 
                                     <li>{rooms.room_title}</li>

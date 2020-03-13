@@ -17,3 +17,5 @@ export default (
         <Route path="/usermenu" component={UserMenu} />    
     </Switch>
 )
+
+//maybe need to add a param to UserMenu like you did for chatroom

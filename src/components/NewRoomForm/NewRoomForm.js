@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-import { Link, withRouter } from 'react-router'
-import { getUser } from '../../ducks/userReducer'
-import { connect } from 'react-redux'
+import { withRouter, Redirect } from 'react-router-dom'
+
+// import { getUser } from '../../ducks/userReducer'
+// import { connect } from 'react-redux'
 
 import './NewRoomForm.css'
 import axios from 'axios'
@@ -13,12 +14,15 @@ class NewRoomForm extends Component {
         this.state = {
             room_title: "",
             room_description: "",
+            room_id: null,
             isVisible: false,
             multiValue: [],
             //only strings of names
             filterOptions: [],
             //objects with names, titles, and id
-            userData: []
+            userData: [],
+            redirect: false,
+            newRoomId: null
         }
     }
 
@@ -26,7 +30,7 @@ class NewRoomForm extends Component {
         this.getUsers()
     }
 
-    getUsers = () => {
+    getUsers = () => { // getts all user and adds names to multi-select tool
         axios.get('/api/users')
         .then(res => {this.setState({ 
             filterOptions: res.data.map(e=>({
@@ -44,41 +48,57 @@ class NewRoomForm extends Component {
     }
 
     handleMultiChange = (option) => {
+        console.log(this.state.multiValue)
         this.state.multiValue.push(option)
     }
 
 
     handleCreateRoom = (props) => { 
-        let users = this.state.multiValue
+        let users = this.state.multiValue[this.state.multiValue.length - 1]
         // ((user, i) => user.user_id)
-        
+        console.log()
         // console.log(this.state.room_title, this.state.room_description)
         console.log(`hit multivalue ${this.state.multiValue}`)
-        axios.post('/api/room', {
+
+        return axios.post('/api/room', {
             room_title: this.state.room_title,
             room_description: this.state.room_description,
-            user_id: users
+            user_id: users.map(e => e.value.user_id)
         })
         .then(res => {
-            //what do you want to have happen once the chat room is created? You can push to the route and go into the room, or give the user a success message
+            console.log(res.data)
+            this.setState({newRoomId: res.data.room_id, redirect: true})
+            // this.setState({room_id: res.data.room_id})
+            // what do you want to have happen once the chat room is created? You can push to the route and go into the room, or give the user a success message
             // console.log(res.data)
-            this.props.history.push(`/chatroom/${res.data.room_id}`)
             // console.log(this.props.history)
+            // this.props.history.push(`/chatroom/${res.data.room_id}`) //Catie's (doesn't redirect)
+            // return <Redirect to={{pathname: `/chatroom/${res.data.room_id}`}}/> //Cole & Scott's (doesn't redirect)
         })
     }
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
+        // console.log(this.props)
+
+        //if redirect is true, you get redirected to the room you just created (needed redirect and newRoomId and to import <Redirect />.)
+        if(this.state.redirect) {
+            return <Redirect 
+                        to={{pathname: `/chatroom/${this.state.newRoomId}`}}
+                        /> 
+        }
         return (
             <div className="newrm-form">
                     <div className="newrm-inputs">
                         <input 
                             placeholder="Room Name"
-                            name="Room Name" />
+                            name="room_title"
+                            onChange={this.handleInput} />
                         <br />
                         <input 
                             placeholder="Room Description"
-                            name="Room Name" />
+                            name="room_description"
+                            onChange={this.handleInput} />
                     </div>
                     <div className="react-select-container">
                         <Select
@@ -91,9 +111,10 @@ class NewRoomForm extends Component {
                             isMulti={true}
                             multi />
                     </div>
-                    
-                <button
-                    onClick={() => this.handleCreateRoom(this.props)}>Create Room</button>
+               
+                     <button
+                    onClick={() => this.handleCreateRoom(this.props)}>Create Room</button> 
+               
             </div>
         )
     }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import Message from '../Message/Message'
 import io from 'socket.io-client'
+import { connect } from 'react-redux'
+import { getUser } from '../../ducks/userReducer'
 
 import './ChatRoom.css'
 
@@ -11,7 +13,7 @@ class ChatRoom extends Component {
             taskVisible: false,
             chatVisible: false,
             message_text: '',
-            user_id: 3,
+            user_id: null,
             room_id: null,
             ts_added: null,
             ts_edited: null,
@@ -25,6 +27,7 @@ class ChatRoom extends Component {
     }
 
     componentDidMount = () => {
+        // console.log('hit data', data)
         this.socket = io()
         this.socket.emit('join room', {room_id: this.props.match.params.room}) //room variable is declared at the end of route(routes.js file)
         this.socket.on('room joined', data => {
@@ -34,9 +37,6 @@ class ChatRoom extends Component {
                 messages: data.chats
                 })
         })
-        // this.socket.on('chat dispatched', data => {
-        //     this.setState({messages: [data.chats]})
-        // })
     }
 
     toggleTaskVisible = () => {
@@ -57,17 +57,31 @@ class ChatRoom extends Component {
         })
     }
 
-    // submitMessage = () => {
-    //     this.socket = io('')
-    // }
+    handleAddMessage = async () => {
+        // console.log('handleAddMessage this.state', this.state.value)
+       await this.socket.emit('chat sent', {
+            room_id: this.props.match.params.room,
+            user_id: this.props.id,
+            message_text: this.state.message_text,
+        })
+        this.socket.on('chat dispatched', data => {
+            console.log(data)
+            this.setState({
+                messages: data
+            })
+        })
+    }
 
     render() {
-        console.log(this.state, this.props.match.params)
-        // console.log(this.props.match.params) //where your room is getting passed in through
+        // console.log(this.state) // message_text comes from this.state
+        // console.log(this.props.match.params) // {room: 7} where your room is getting passed in through
+        // console.log(this.props)
+        
         return (
         <div className="chat-room-comp">
         <h2>{this.state.room.room_title}</h2>
             {this.state.messages.map((mess) => {
+            //    return <h1>{mess.message_text}</h1>
                 return <Message
                 mess={mess} />
             })}
@@ -104,7 +118,9 @@ class ChatRoom extends Component {
                         placeholder="chat text"
                         type="textarea"
                         onChange={(e) => this.handleChange(e.target)} />
-                    <button>Submit</button>
+                    <button
+                        onClick={this.handleAddMessage}
+                        >Submit</button>
                     </>
                 }
             </div>
@@ -115,4 +131,15 @@ class ChatRoom extends Component {
     }  
 }
 
-export default ChatRoom
+const mapStateToProps = reduxState => {
+    // console.log(reduxState)
+    return {
+        id: reduxState.userReducer.user.id
+}}
+
+// const mapDispatchToProps = { //for when you're using multiple reducers
+//     getUser
+// }
+
+
+export default connect(mapStateToProps, { getUser })(ChatRoom)

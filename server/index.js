@@ -62,41 +62,51 @@ app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
 //SOCKETS
 
 io.on('connection', socket => {
-    console.log('User Connected')
+    console.log('User Connected using Sockets')
 
     //join room, pull up chats
     socket.on('join room', async data => {
         const { room_id } = data,
         dbObj = app.get('db')
-
-        console.log("Room joined", room_id )
+        // console.log(dbObj)
+        // console.log("Room joined", room_id )
         let room = await dbObj.rooms.get_a_room({ room_id: room_id }) //should put this info in the room name placeholder when page loads
         let chats = await dbObj.messages.get_chats({ room_id: room_id }) //should get all chats with this room id when page loads
-        console.log(room)
+        // console.log(room)
         socket.join(room[0].room_id) //.join method subscribes user to the room we pulled from the database query get_a_room above.
         io.to(room[0].room_id).emit('room joined', { room: room[0], chats }) // I think using io instead of socket sends the message to everyone in the room including the sender. "to" specifies the room
-        //.emit is a method that broadcasts our message "Broadcast: Room Joined" and our chats
+        //.emit is a method that broadcasts 'room joined' which you use to call on front end. Brings up the room and our chats
     })
     //add chats
-    socket.on('message sent', async data => {
+    socket.on('chat sent', async data => {
+        console.log(data)
         const { room_id, user_id, message_text } = data
         const dbObj = app.get('db')
-        await dbObj.messages.add_chat({ room_id: room_id, user_id, message_text })
-        let chats = await db.messages.get_chats({ room_id: room_id })
+        await dbObj.messages.add_chat({ room_id: 
+            room_id, 
+            user_id, 
+            message_text 
+        })
+        let chats = await dbObj.messages.get_chats({
+            room_id, 
+            user_id, 
+            message_text })
+            // console.log(chats)
         socket.emit('chat dispatched', chats)
     })
     //add tasks
     socket.on('task sent', async data => {
         const { room_id, user_id, message_text, assigned_to, due_date } = data
         const dbObj = app.get('db')
-        await dbObj.messages.add_task({ 
-            room_id: room_id, 
+        await dbObj.messages.add_task({ task_id: 
+            room_id, 
             user_id, 
             message_text, 
             assigned_to, 
             due_date 
         })
         let tasks = await db.messages.get_tasks({user_id: user_id})
+        socket.emit('task dispatched', tasks)
     })
     //edit chat and task
 
