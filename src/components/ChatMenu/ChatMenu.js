@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { getRooms } from '../../ducks/roomReducer'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 import NewRoomForm from '../NewRoomForm/NewRoomForm'
 import './ChatMenu.css'
@@ -11,6 +13,8 @@ class ChatMenu extends Component {
         super(props)
         this.state = {
             isVisible: false,
+            search_text: '',
+            filteredRooms: [],
         }
     }
     
@@ -24,14 +28,48 @@ class ChatMenu extends Component {
         })
     }
 
+    handleSearchInput = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    handleSearch = () => {
+        const search_text = this.state.search_text
+        axios.get(`/api/filteredRooms?search_text=${search_text}`)
+        .then( res => {
+            this.setState({
+                filteredRooms: res.data, 
+                search_text: ''
+            })
+            console.log(this.state.search_text)
+        })
+    }
+
     render() {
 
         return (
             <div className="chat-menu-comp hide-menu" id="chat-menu">
                 <div>
                     <input 
-                        placeholder="Search Threads & Direct Messages" />
-                    <button>Search</button>
+                        placeholder="Search Threads & Direct Messages"
+                        name="search_text"
+                        value={this.state.search_text}
+                        onChange={(e) => this.handleSearchInput(e)} />
+                    <button
+                        onClick={this.handleSearch}>Search</button>
+                    <ul>
+                    {this.state.filteredRooms.map(filteredRooms => {
+                            // console.log(this.props.roomReducer)
+                            return (
+                                <Link to={`/chatroom/${filteredRooms.room_id}`}>
+                                <div key={filteredRooms.room_id} className="rooms-list"> 
+                                    <li>{filteredRooms.room_title}</li>
+                                </div>
+                                </Link>
+                            )
+                        })}
+                    </ul>
                         <br />
                     <button>My Tasks</button>
                         <h2>My Rooms</h2>

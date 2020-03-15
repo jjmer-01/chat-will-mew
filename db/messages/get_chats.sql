@@ -1,5 +1,6 @@
 SELECT 
-    m.message_text, 
+    m.message_text,
+    m.message_id,
     m.ts_added, 
     m.ts_edited, 
     m.is_task, 

@@ -44,6 +44,17 @@ module.exports = {
         }
     },
 
+    getFilteredRooms: async (req, res) => {
+        const {search_text} = req.query
+        const dbObj = req.app.get('db').search
+        const roomSearch = await dbObj.search_rooms({search_text})
+            if(roomSearch[0]) {
+                res.status(200).send(roomSearch)
+            } else {
+                return 'No matching rooms'
+            }
+    },
+
     
    
 }

@@ -47,6 +47,7 @@ app.post('/api/logout', authCtrl.logout)
 app.get('/api/users', chatMenuCtrl.getUsers)
 app.post('/api/room', chatMenuCtrl.addRoom)
 app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
+app.get('/api/filteredRooms', chatMenuCtrl.getFilteredRooms), 
 
 //ENDPOINTS userMenuCtrl
 // app.post('/api/logout', userMenuCtrl.logout)
@@ -95,20 +96,29 @@ io.on('connection', socket => {
         socket.emit('chat dispatched', chats)
     })
     //add tasks
-    socket.on('task sent', async data => {
-        const { room_id, user_id, message_text, assigned_to, due_date } = data
-        const dbObj = app.get('db')
-        await dbObj.messages.add_task({ task_id: 
-            room_id, 
-            user_id, 
-            message_text, 
-            assigned_to, 
-            due_date 
-        })
-        let tasks = await db.messages.get_tasks({user_id: user_id})
-        socket.emit('task dispatched', tasks)
-    })
+    // socket.on('task sent', async data => {
+    //     const { room_id, user_id, message_text, assigned_to, due_date } = data
+    //     const dbObj = app.get('db')
+    //     await dbObj.messages.add_task({ task_id: 
+    //         room_id, 
+    //         user_id, 
+    //         message_text, 
+    //         assigned_to, 
+    //         due_date 
+    //     })
+    //     let tasks = await db.messages.get_tasks({user_id: user_id})
+    //     socket.emit('task dispatched', tasks)
+    // })
     //edit chat and task
+    socket.on('edit message', async data => {
+        const { message_text, room_id, message_id } = data
+        console.log(message_text, message_id)
+        const dbObj = app.get('db')
+        let message = await dbObj.messages.edit_message({message_text, message_id})
+        console.log(message)
+        // let chats = await dbObj.messages.get_chats({room_id, user_id})
+        // socket.emit('edit dispatched', chats)
+    })
 
     //delete chat and task
 

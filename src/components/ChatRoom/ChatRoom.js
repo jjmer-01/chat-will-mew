@@ -22,7 +22,8 @@ class ChatRoom extends Component {
             due_date: null,
             is_complete: false,
             messages: [],
-            room: {}
+            room: {},
+            
         }
     }
 
@@ -70,12 +71,18 @@ class ChatRoom extends Component {
                 messages: data
             })
         })
+        this.forceUpdate()
     }
 
+
+
+  
+
     render() {
-        // console.log(this.state) // message_text comes from this.state
+        console.log(this.state) // message_text comes from this.state
         // console.log(this.props.match.params) // {room: 7} where your room is getting passed in through
         // console.log(this.props)
+
         
         return (
         <div className="chat-room-comp">
@@ -83,7 +90,10 @@ class ChatRoom extends Component {
             {this.state.messages.map((mess) => {
             //    return <h1>{mess.message_text}</h1>
                 return <Message
-                mess={mess} />
+                mess={mess}
+                message_id={mess.message_id}
+                socket = {this.socket}
+                room_id = {this.props.match.params} />
             })}
             <button
                 onClick={this.toggleTaskVisible}>
