@@ -8,7 +8,6 @@ const initialState = {
 }
 
 const GET_ROOMS = 'GET_ROOMS'
-const GET_FILTERED_ROOMS ='GET_FILTERED_ROOMS'
 
 
 //action creator

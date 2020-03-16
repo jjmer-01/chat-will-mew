@@ -31,28 +31,27 @@ class Nav extends Component {
         return (
             <div className="nav-comp">
                 <div>
-                    <button 
-                        className="show-menu-toggle"
+                    <div className="show-menu-toggle"
                         onClick={this.toggleCmenuVisible}>
-                        Chat Menu
-                        </button>
-                    <div>
+                        <i className="fas fa-bars fa-lg"></i>
+                        </div>        
+                </div>
+                    <div className="chat-room-container">
                         {this.state.isVisible === false ? null : <ChatMenu />}
-                        </div>
                         </div>
                 
 
                 <h1>ahnChat</h1>
 
                 <div>
-                    <button
-                        className="show-menu-toggle"
+                    <div className="show-menu-toggle"
                         onClick={this.toggleUmenuVisible}>
-                        My Profile
-                        </button>
-                    <div>
+                        <i className="far fa-user-circle fa-lg"></i>
+                    </div>
+                   
+                </div>
+                <div>
                         {this.state.isntVisible === false ? null : <UserMenu />}
-                        </div>
                         </div>
                 
                 

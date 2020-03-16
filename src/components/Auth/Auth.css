@@ -1,21 +1,17 @@
-img {
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 h1 {
   font-family: 'Monoton', cursive;
   font-size: 50px;
   font-weight: 300;
   margin-top: 100px;
   margin-bottom: 20px;
+  color: #e95d2a;
 }
 
 h2 {
   font-family: 'Shrikhand', cursive;
   font-size: 20px;
   font-weight: 200;
-  color: white;
+  color: #d6f1c4;
   margin-bottom: 30px;
 }
 
@@ -38,7 +34,7 @@ button {
   font-family: 'Dosis', sans-serif;
   font-size: 1em;
   font-weight: 800;
-  background-color: white;
+  background-color: #d6f1c4;
   color: #2E2A39;
   margin: 5px;
   width: 200px;
@@ -47,6 +43,7 @@ button {
 }
 
 input {
+  border-radius: 10px;
   width: 175px;
   height: 20px;
 }

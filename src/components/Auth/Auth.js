@@ -43,20 +43,22 @@ class Auth extends Component {
             <h1>ahnChat</h1>
             <h2>a harmless, necessary chat</h2>
             <div className="auth-form">
-                <label htmlFor="user_email">EMAIL: 
+                <label htmlFor="user_email">EMAIL:&nbsp; 
                 <input 
                     className="auth-in"
                     placeholder="email"
                     name="user_email"
                     type="email"
+                    required
                     onChange={this.handleInput} />
                     </label>
-                <label htmlFor="password">PASSWORD: 
+                <label htmlFor="password">PASSWORD:&nbsp; 
                 <input 
                     className="auth-in"
                     placeholder="password"
                     name="password"
                     type="password"
+                    required
                     onChange={(e) =>{this.handleInput(e)}} />
                     </label>
                 <div className="auth-buttons">
@@ -70,8 +72,7 @@ class Auth extends Component {
                             REGISTER
                             </button>
                             </Link> 
-                </div>
-                
+                </div>   
             </div> 
         </div>
         )
