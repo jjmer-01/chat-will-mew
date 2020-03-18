@@ -109,10 +109,11 @@ io.on('connection', socket => {
     //     let tasks = await db.messages.get_tasks({user_id: user_id})
     //     socket.emit('task dispatched', tasks)
     // })
+
     //edit chat and task
     socket.on('edit message', async data => {
         const { message_text, room_id, message_id } = data
-        console.log(message_text, message_id)
+        // console.log(message_text, message_id)
         const dbObj = app.get('db')
         let message = await dbObj.messages.edit_message({message_text, message_id})
         console.log(message)
@@ -121,6 +122,13 @@ io.on('connection', socket => {
     })
 
     //delete chat and task
+    socket.on('delete message', async data => {
+        const { message_id } = data
+        console.log(message_id)
+        const dbObj = app.get('db')
+        let removedMessage = await dbObj.messages.delete_messages({message_id})
+        socket.emit('delete dispatched', removedMessage)
+    })
 
 
 })

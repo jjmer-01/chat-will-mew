@@ -68,7 +68,8 @@ class ChatRoom extends Component {
         this.socket.on('chat dispatched', data => {
             console.log(data)
             this.setState({
-                messages: data
+                messages: data,
+                message_text: ''
             })
         })
         this.forceUpdate()

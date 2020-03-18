@@ -37,7 +37,10 @@ class Nav extends Component {
                         </div>        
                 </div>
                     <div className="chat-room-container">
-                        {this.state.isVisible === false ? null : <ChatMenu />}
+                        {this.state.isVisible === false 
+                        ? null 
+                        : <ChatMenu
+                            cMenuVisible = {this.props.isVisible} />}
                         </div>
                 
 

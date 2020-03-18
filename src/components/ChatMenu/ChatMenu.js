@@ -42,7 +42,7 @@ class ChatMenu extends Component {
                 filteredRooms: res.data, 
                 search_text: ''
             })
-            console.log(this.state.search_text)
+            // console.log(this.state.search_text)
         })
     }
 
@@ -75,11 +75,13 @@ class ChatMenu extends Component {
                         <h2>My Rooms</h2>
                     <ul>
                         {this.props.rooms.map(rooms => {
-                            // console.log(this.props.roomReducer)
+                            // console.log('hit this.props.rooms', this.props.rooms)
                             return (
+                                <Link to={`/chatroom/${rooms.room_id}`}>
                                 <div key={rooms.room_id} className="rooms-list"> 
                                     <li>{rooms.room_title}</li>
                                 </div>
+                                </Link>
                             )
                         })}
                     </ul>

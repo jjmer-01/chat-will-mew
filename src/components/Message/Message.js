@@ -37,6 +37,12 @@ class Message extends Component {
         })
     }
 
+    handleDelete = async () => {
+        await this.props.socket.emit('delete message', {
+            message_id: this.props.message_id
+        })
+    }
+
     //delete function goes here (already have messageID on props)
 
     render() {
@@ -53,7 +59,9 @@ class Message extends Component {
                 <button
                     onClick={this.showEditInput}
                     >Edit</button>
-                <button>Delete</button>
+                <button
+                    onClick={this.handleDelete}
+                    >Delete</button>
                 </>
                 :
                 <>
