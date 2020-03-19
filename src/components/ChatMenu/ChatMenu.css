@@ -1,12 +1,26 @@
 .chat-menu-comp {
   background-color: orange;
-  height: 80vh;
-  width: 85vw;
+  max-height: 80vh;
+  max-width: 85vw;
   position: relative;
-  top: 130px;
-  left: -15px;
   border-radius: 0px 0px 20px 0px;
   -webkit-box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.26);
           box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.26);
+  padding: 10px;
+}
+
+.fa-search {
+  color: #d6f1c4;
+  padding: 3px;
+}
+
+.search-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 /*# sourceMappingURL=ChatMenu.css.map */

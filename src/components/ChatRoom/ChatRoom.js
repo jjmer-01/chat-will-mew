@@ -60,7 +60,8 @@ class ChatRoom extends Component {
 
     handleAddMessage = async () => {
         // console.log('handleAddMessage this.state', this.state.value)
-       await this.socket.emit('chat sent', {
+        console.log('handleAddMessage this.props', this.props)
+        await this.socket.emit('chat sent', {
             room_id: this.props.match.params.room,
             user_id: this.props.id,
             message_text: this.state.message_text,
@@ -80,7 +81,7 @@ class ChatRoom extends Component {
   
 
     render() {
-        console.log(this.state) // message_text comes from this.state
+        // console.log(this.state) // message_text comes from this.state
         // console.log(this.props.match.params) // {room: 7} where your room is getting passed in through
         // console.log(this.props)
 
@@ -143,7 +144,7 @@ class ChatRoom extends Component {
 }
 
 const mapStateToProps = reduxState => {
-    // console.log(reduxState)
+    console.log('mapStateToProps reduxState', reduxState)
     return {
         id: reduxState.userReducer.user.id
 }}

@@ -7,8 +7,21 @@ h2 {
   text-shadow: -2px 2px 2px #e95d2a;
 }
 
+p {
+  padding: 10px;
+  color: #643754;
+}
+
 .dash-comp {
   background-color: #d6f1c4;
+  color: #643754;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.fa-arrow-alt-circle-up {
+  padding: 10px;
 }
 /*# sourceMappingURL=Dash.css.map */

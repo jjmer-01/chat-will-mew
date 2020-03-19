@@ -21,8 +21,9 @@ class Dash extends Component {
                     <Route path="/usermenu" component={UserMenu} />
                     <Route path="/dash"
                         render={() => (
-                            <div>
-                                <h2>Join a Conversation</h2>
+                            <div className="dash-comp">
+                                <i class="far fa-arrow-alt-circle-up fa-2x"></i>
+                                <p>Join a Conversation</p>
                             </div>
                         )}
                     />

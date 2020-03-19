@@ -56,12 +56,14 @@ class Message extends Component {
                 <>
                 <h3>{first_name} {last_name}</h3>
                 <p>{message_text}</p>
-                <button
-                    onClick={this.showEditInput}
-                    >Edit</button>
-                <button
-                    onClick={this.handleDelete}
-                    >Delete</button>
+                <div className="edit-icon"
+                    onClick={this.showEditInput}>
+                    <i class="fas fa-edit"></i>
+                    </div>
+                <div
+                    onClick={this.handleDelete}>
+                    <i class="fas fa-trash"></i>
+                    </div>
                 </>
                 :
                 <>
