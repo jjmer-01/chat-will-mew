@@ -1,6 +1,6 @@
 h1 {
   color: #e95d2a;
-  text-shadow: -2px 2px 2px #f5e258;
+  text-shadow: -3px 3px 1px #d6f1c4;
   margin-top: 20px;
 }
 
@@ -33,7 +33,6 @@ h1 {
 
 .fa-bars, .fa-user-circle {
   color: #d6f1c4;
-  margin: 10px;
 }
 
 .chat-room-container {

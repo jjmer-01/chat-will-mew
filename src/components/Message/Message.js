@@ -3,6 +3,8 @@ import io from 'socket.io-client'
 import { getUser } from '../../ducks/userReducer'
 import { connect } from 'react-redux'
 
+import './Message.css'
+
 class Message extends Component {
     constructor(props) {
         super(props)
@@ -50,31 +52,40 @@ class Message extends Component {
     const {first_name, last_name, message_text} = this.props.mess
 
         return (
-            <div>
+            <div className="message-comp">
                 {!this.state.isEditing 
                 ? 
-                <>
-                <h3>{first_name} {last_name}</h3>
-                <p>{message_text}</p>
-                <div className="edit-icon"
-                    onClick={this.showEditInput}>
-                    <i class="fas fa-edit"></i>
-                    </div>
-                <div
-                    onClick={this.handleDelete}>
-                    <i class="fas fa-trash"></i>
-                    </div>
-                </>
+                <div className="message-display">
+                    <h3>{first_name} {last_name}</h3>
+                    <span className="messages">
+                        <p>{message_text}</p>
+                        <div className="edit-icon"
+                            onClick={this.showEditInput}>
+                            <i class="fas fa-edit"></i>
+                            </div>
+                        <div className="delete-icon"
+                            onClick={this.handleDelete}>
+                            <i class="fas fa-trash"></i>
+                            </div>
+                    </span>
+                    
+                </div>
                 :
-                <>
-                <input
-                    name="edited_message_text"
-                    value={this.state.edited_message_text}
-                    onChange={(e) => this.handleEdit(e)} />
-                <button>Cancel Edit</button>
-                <button
-                    onClick={this.handleSubmitEdit}>Save</button>
-                </>
+                <div className="message-edit">
+                    <h3>{first_name} {last_name}</h3>
+                    <span className="messages">
+                        <input
+                            name="edited_message_text"
+                            value={this.state.edited_message_text}
+                            onChange={(e) => this.handleEdit(e)} />
+                        <button
+                            onClick={this.showEditInput}>
+                            Cancel Edit</button>
+                        <button
+                            onClick={this.handleSubmitEdit}>Save</button>
+                    </span>
+                    
+                </div>
                 }
             
              
