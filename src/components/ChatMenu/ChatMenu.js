@@ -67,7 +67,8 @@ class ChatMenu extends Component {
                     {this.state.filteredRooms.map(filteredRooms => {
                             // console.log(this.props.roomReducer)
                             return (
-                                <Link to={`/chatroom/${filteredRooms.room_id}`}>
+                                <Link to={`/chatroom/${filteredRooms.room_id}`}
+                                    onClick={this.props.toggleCmenuVisible}>
                                 <div key={filteredRooms.room_id} className="rooms-list"> 
                                     <li>{filteredRooms.room_title}</li>
                                 </div>
@@ -82,10 +83,11 @@ class ChatMenu extends Component {
                         {this.props.rooms.map(rooms => {
                             // console.log('hit this.props.rooms', this.props.rooms)
                             return (
-                                <Link to={`/chatroom/${rooms.room_id}`}>
-                                <div key={rooms.room_id} className="rooms-list"> 
-                                    <li>{rooms.room_title}</li>
-                                </div>
+                                <Link to={`/chatroom/${rooms.room_id}`}
+                                    onClick={this.props.toggleCmenuVisible}>
+                                    <div key={rooms.room_id} className="rooms-list"> 
+                                        <li>{rooms.room_title}</li>
+                                    </div>
                                 </Link>
                             )
                         })}

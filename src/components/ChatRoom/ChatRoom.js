@@ -3,6 +3,7 @@ import Message from '../Message/Message'
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import { getUser } from '../../ducks/userReducer'
+import { withRouter } from 'react-router'
 
 import './ChatRoom.css'
 
@@ -23,12 +24,14 @@ class ChatRoom extends Component {
             is_complete: false,
             messages: [],
             room: {},
+            chatRoomSwitched: true,
             
         }
     }
 
     componentDidMount = () => {
         // console.log('hit data', data)
+        console.log('componentDidMount')
         this.socket = io()
         this.socket.emit('join room', {room_id: this.props.match.params.room}) //room variable is declared at the end of route(routes.js file)
         this.socket.on('room joined', data => {
@@ -38,6 +41,29 @@ class ChatRoom extends Component {
                 messages: data.chats
                 })
         })
+    }
+
+    componentDidUpdate = () => {
+        if(this.state.chatRoomSwitched) {
+            this.socket = io()
+            this.socket.emit('join room', {room_id: this.props.match.params.room}) //room variable is declared at the end of route(routes.js file)
+            this.socket.on('room joined', data => {
+                this.setState({
+                    room_id: data.room.room_id,
+                    room: data.room,
+                    messages: data.chats,
+                    chatRoomSwitched: false
+                    })
+            })
+        }
+        if (this.state.room_id !== +this.props.match.params.room) {
+            console.log('hit componentDidUpdate')
+            this.setState({
+                chatRoomSwitched: true,
+                room_id: +this.props.match.params.room
+            })
+        this.forceUpdate() 
+        }
     }
 
     toggleTaskVisible = () => {
@@ -81,9 +107,10 @@ class ChatRoom extends Component {
   
 
     render() {
-        // console.log(this.state) // message_text comes from this.state
+        console.log(this.state.room_id, +this.props.match.params.room) // message_text comes from this.state
         // console.log(this.props.match.params) // {room: 7} where your room is getting passed in through
         // console.log(this.props)
+
 
         
         return (
@@ -144,7 +171,7 @@ class ChatRoom extends Component {
 }
 
 const mapStateToProps = reduxState => {
-    console.log('mapStateToProps reduxState', reduxState)
+    // console.log('mapStateToProps reduxState', reduxState)
     return {
         id: reduxState.userReducer.user.id
 }}
@@ -154,4 +181,4 @@ const mapStateToProps = reduxState => {
 // }
 
 
-export default connect(mapStateToProps, { getUser })(ChatRoom)
+export default withRouter(connect(mapStateToProps, { getUser })(ChatRoom)) 

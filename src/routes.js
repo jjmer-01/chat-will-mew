@@ -10,8 +10,8 @@ import UserMenu from './components/UserMenu/UserMenu'
 export default (
     <Switch>
         <Route exact path="/" component={Auth} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/dash" component={Dash} />
+        <Route path="/register" component={Register} />
+        <Route path="/dash" component={Dash} />
         <Route path="/chatroom/:room" component={ChatRoom} /> 
         <Route path="/taskroom" component={TaskRoom} />
         <Route path="/usermenu" component={UserMenu} />    

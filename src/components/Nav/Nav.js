@@ -16,6 +16,7 @@ class Nav extends Component {
     }
 
     toggleCmenuVisible = () => {
+        console.log('hit')
         this.setState({
             isVisible: !this.state.isVisible,
         })
@@ -39,7 +40,8 @@ class Nav extends Component {
                         {this.state.isVisible === false 
                         ? null 
                         : <ChatMenu
-                            cMenuVisible = {this.props.isVisible} />}
+                            cMenuVisible = {this.props.isVisible}
+                            toggleCmenuVisible = {this.toggleCmenuVisible} />}
                         </div>       
                 </div>
 

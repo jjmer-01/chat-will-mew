@@ -16,7 +16,7 @@ class Dash extends Component {
         return (   
             <div className="dash-comp">
                 <Switch>
-                    <Route path="/chatroom/:room" component={ChatRoom} />
+                    {/* <Route path="/chatroom/:room" component={ChatRoom} /> */}
                     <Route path="/taskroom" component={TaskRoom} />
                     <Route path="/usermenu" component={UserMenu} />
                     <Route path="/dash"
