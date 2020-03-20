@@ -144,10 +144,10 @@ class ChatRoom extends Component {
                     </>
                 }
             </div>
-            <button
+            <div className='new-chat-button'
                 onClick={this.toggleChatVisible}>
-                NEW CHAT
-                </button>
+                <i class="fas fa-plus"></i>
+                </div>
             <div>
                 {this.state.chatVisible === false ? null :
                     <>

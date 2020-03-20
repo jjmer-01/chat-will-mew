@@ -42,11 +42,13 @@ class Nav extends Component {
                         : <ChatMenu
                             cMenuVisible = {this.props.isVisible}
                             toggleCmenuVisible = {this.toggleCmenuVisible} />}
-                        </div>       
+                    </div>       
                 </div>
 
-                <Link to={'/dash'}>
-                    <h1>ahnChat</h1>
+                <Link 
+                    className="dash-header"
+                    to={'/dash'}>
+                    <h1>aC</h1>
                     </Link>
 
                 <div>
@@ -58,7 +60,7 @@ class Nav extends Component {
                         ? null 
                         : <UserMenu />}
                         </div>
-                        </div>
+                    </div>
                 </div>  
             </div>
         )

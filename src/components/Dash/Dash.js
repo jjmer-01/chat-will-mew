@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 //put axios session request in here and not in redux
 
 import {Switch, Route} from 'react-router-dom'
-import ChatRoom from '../ChatRoom/ChatRoom'
-import TaskRoom from '../TaskRoom/TaskRoom'
-import UserMenu from '../UserMenu/UserMenu'
+// import ChatRoom from '../ChatRoom/ChatRoom'
+// import TaskRoom from '../TaskRoom/TaskRoom'
+// import UserMenu from '../UserMenu/UserMenu'
 
 import './Dash.css'
 
@@ -15,10 +15,6 @@ class Dash extends Component {
     render() {
         return (   
             <div className="dash-comp">
-                <Switch>
-                    {/* <Route path="/chatroom/:room" component={ChatRoom} /> */}
-                    <Route path="/taskroom" component={TaskRoom} />
-                    <Route path="/usermenu" component={UserMenu} />
                     <Route path="/dash"
                         render={() => (
                             <div className="dash-comp">
@@ -27,7 +23,6 @@ class Dash extends Component {
                             </div>
                         )}
                     />
-                </Switch>
             </div>
         )
     }
