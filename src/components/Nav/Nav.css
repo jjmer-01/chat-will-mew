@@ -1,6 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
-  color: #e95d2a;
-  text-shadow: -3px 3px 1px #d6f1c4;
+  color: #d6f1c4;
   margin-top: 20px;
 }
 

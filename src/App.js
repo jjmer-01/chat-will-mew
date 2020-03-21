@@ -16,13 +16,17 @@ class App extends Component {
       <div className="App">
         {this.props.location.pathname === '/' 
         ? (
-          <><Auth /></>
+          <>
+          <Auth />
+          </>
           )
-        : (this.props.location.pathname === '/register' ? <Register /> 
-        : ( <><Nav />
-            {routes}
-            </>
-          ))}
+        : (this.props.location.pathname === '/register' 
+          ? <Register /> 
+          : ( <>
+              <Nav />
+              {routes}
+              </>
+            ))}
       </div>
   
     )

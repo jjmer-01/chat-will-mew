@@ -16,9 +16,29 @@
     box-shadow: 0 7px 18px 0 rgba(0, 0, 0, .26);
 }
 
+.chat-room-form {
+    display: flex;
+    flex-direction: row row-reverse;
+    align-content: center;
+}
+
 .fa-plus {
     display: flex;
     text-align: center;
     margin: auto;
+}
+
+#message-fields {
+    background-color: #e95d2a;
+    width: 60vw;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#send-message {
+    width: 40px;
 }
 

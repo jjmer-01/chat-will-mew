@@ -107,7 +107,7 @@ class ChatRoom extends Component {
   
 
     render() {
-        console.log(this.state.room_id, +this.props.match.params.room) // message_text comes from this.state
+        // console.log(this.state.room_id, +this.props.match.params.room) // message_text comes from this.state
         // console.log(this.props.match.params) // {room: 7} where your room is getting passed in through
         // console.log(this.props)
 
@@ -124,7 +124,7 @@ class ChatRoom extends Component {
                 socket = {this.socket}
                 room_id = {this.props.match.params} />
             })}
-            <button
+            {/* <button
                 onClick={this.toggleTaskVisible}>
                 NEW TASK
                 </button>
@@ -143,26 +143,30 @@ class ChatRoom extends Component {
                     <button>Submit</button>
                     </>
                 }
-            </div>
-            <div className='new-chat-button'
-                onClick={this.toggleChatVisible}>
-                <i class="fas fa-plus"></i>
+            </div> */}
+            <div className='new-chat-form'>
+                <div className='new-chat-button'
+                    onClick={this.toggleChatVisible}>
+                    <i class="fas fa-plus"></i>
                 </div>
-            <div>
-                {this.state.chatVisible === false ? null :
-                    <>
-                    <input
-                        name="message_text" 
-                        value={this.state.message_text}
-                        placeholder="chat text"
-                        type="textarea"
-                        onChange={(e) => this.handleChange(e.target)} />
-                    <button
-                        onClick={this.handleAddMessage}
-                        >Submit</button>
-                    </>
-                }
+                {/* <div id="message-fields"> */}
+                    {this.state.chatVisible === false ? null :
+                        <div id='message-fields'>
+                        <textarea
+                            name="message_text" 
+                            value={this.state.message_text}
+                            placeholder="say it here!"
+                            type="textarea"
+                            onChange={(e) => this.handleChange(e.target)} />
+                        <button id='send-message'
+                            onClick={this.handleAddMessage}>
+                                <i class="far fa-paper-plane fa-lg"></i>
+                            </button>
+                        </div>
+                    }
+                {/* </div> */}
             </div>
+            
             
 
         </div>
