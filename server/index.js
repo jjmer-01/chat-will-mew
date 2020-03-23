@@ -47,15 +47,15 @@ app.post('/api/logout', authCtrl.logout)
 app.get('/api/users', chatMenuCtrl.getUsers)
 app.post('/api/room', chatMenuCtrl.addRoom)
 app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
-app.get('/api/filteredRooms', chatMenuCtrl.getFilteredRooms), 
+app.get('/api/filteredRooms', chatMenuCtrl.getFilteredRooms) 
+
+//ENDPOINTS chatRoomCtrl
+app.post('/api/room_user/:room_id/:user_id', chatRoomCtrl.joinRoom)
 
 //ENDPOINTS userMenuCtrl
-// app.post('/api/logout', userMenuCtrl.logout)
 // app.put('/api/user/:userId', userMenuCtrl.editUser)
 
 //REPLACE WITH SOCKET ENDPOINTS
-// app.post('/api/chat', messageCtrl.addChat)
-// app.post('/api/chat', messageCtrl.addTask)
 // app.put('/api/chat/:messageId', messageCtrl.editMessage)
 // app.delete('/api/chat/:messageId', messageCtrl.deleteMessage)
 

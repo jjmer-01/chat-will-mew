@@ -1,9 +1,6 @@
 const bcrypt = require('bcryptjs')
 
-module.exports = {
-    // getUser: async(req, res) => {
-
-    // }, 
+module.exports = { 
     
     register: async(req, res) => {
         //destructuring email & password from user input (req.body)
@@ -41,10 +38,10 @@ module.exports = {
         const {user_email, password} = req.body
         // console.log(req.body)
         const {session} = req
-        const db = req.app.get('db').auth
+        const db = req.app.get('db')
         
         //checks to see if user (email) exists already
-        let user = await db.check_user({user_email})
+        let user = await db.auth.check_user({user_email})
         user = user[0]
         if(!user) {
             return res.status(400).send("Oops! Looks like that email isn't registered yet. Hit that register button to get started!")
@@ -65,7 +62,7 @@ module.exports = {
     },
 
     logout: async(req, res) => {
-        console.log('hit logout')
+        // console.log('hit logout')
         if (req.session) req.session.destroy()
         return res.sendStatus(200)
     }

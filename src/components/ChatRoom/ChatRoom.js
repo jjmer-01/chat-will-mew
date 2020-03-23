@@ -116,6 +116,11 @@ class ChatRoom extends Component {
         return (
         <div className="chat-room-comp">
         <h2>{this.state.room.room_title}</h2>
+            <span className="room-controls">
+                <button>join</button>
+                <button>leave</button>
+            </span>
+            
             {this.state.messages.map((mess) => {
             //    return <h1>{mess.message_text}</h1>
                 return <Message
@@ -124,6 +129,7 @@ class ChatRoom extends Component {
                 socket = {this.socket}
                 room_id = {this.props.match.params} />
             })}
+        
             {/* <button
                 onClick={this.toggleTaskVisible}>
                 NEW TASK

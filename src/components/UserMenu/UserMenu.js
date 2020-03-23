@@ -1,28 +1,32 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
-// import { connect } from 'react-redux'
-// import { logout } from '../../ducks/userReducer'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+import { getUser, logout } from '../../ducks/userReducer'
 
-function UserMenu() {
+import './UserMenu.css'
 
+function UserMenu(props) {
+
+    console.log('hit props UserMenu', props)
     return (
-        <div>
-            <p>Logout</p>
+        <div className='user-menu-comp'>
+            <p>{props.userReducer.user.first_name} {props.userReducer.user.last_name}</p>
+            
+            <button onClick={() => {props.logout()}}> 
+                <Link to='/'>Logout</Link>
+            </button>
+                
         </div>
     )
 }
 
-export default UserMenu
-//<Link to="/" onClick={this.logout}>Logout</Link>
-// const mapStateToProps = reduxState => {
-//     return {
-//         userReducer: reduxState.userReducer
-//     }
-// }
-
-// const mapDispatchToProps = {
-//     logout
-// }
 
 
-// export default connect(mapStateToProps, mapDispatchToProps)(UserMenu)
+const mapStateToProps = reduxState => {
+    return {
+        userReducer: reduxState.userReducer
+    }
+}
+
+export default withRouter(connect(mapStateToProps, { getUser, logout })(UserMenu))

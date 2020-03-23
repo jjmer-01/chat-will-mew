@@ -55,11 +55,11 @@ class Nav extends Component {
                     <div className="show-menu-toggle user-menu-icon"
                         onClick={this.toggleUmenuVisible}>
                         <i className="far fa-user-circle fa-lg"></i>
-                    <div>
+                    </div>
+                    <div className='user-menu-container'>
                         {this.state.isntVisible === false 
                         ? null 
                         : <UserMenu />}
-                        </div>
                     </div>
                 </div>  
             </div>

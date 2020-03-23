@@ -69,9 +69,9 @@ class ChatMenu extends Component {
                             return (
                                 <Link to={`/chatroom/${filteredRooms.room_id}`}
                                     onClick={this.props.toggleCmenuVisible}>
-                                <div key={filteredRooms.room_id} className="rooms-list"> 
-                                    <li>{filteredRooms.room_title}</li>
-                                </div>
+                                    <div key={filteredRooms.room_id} className="rooms-list"> 
+                                        <li>{filteredRooms.room_title}</li>
+                                    </div>
                                 </Link>
                             )
                         })}
@@ -80,15 +80,15 @@ class ChatMenu extends Component {
                     <button>My Tasks</button>
                         <h2>My Rooms</h2>
                     <ul>
-                        {this.props.rooms.map(rooms => {
-                            // console.log('hit this.props.rooms', this.props.rooms)
-                            return (
-                                <Link to={`/chatroom/${rooms.room_id}`}
-                                    onClick={this.props.toggleCmenuVisible}>
-                                    <div key={rooms.room_id} className="rooms-list"> 
-                                        <li>{rooms.room_title}</li>
-                                    </div>
-                                </Link>
+                    {this.props.rooms.map(rooms => {
+                        // console.log('hit this.props.rooms', this.props.rooms)
+                        return (
+                            <Link to={`/chatroom/${rooms.room_id}`}
+                                onClick={this.props.toggleCmenuVisible}>
+                                <div key={rooms.room_id} className="rooms-list"> 
+                                    <li>{rooms.room_title}</li>
+                                </div>
+                            </Link>
                             )
                         })}
                     </ul>

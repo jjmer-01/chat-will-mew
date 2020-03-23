@@ -10,26 +10,21 @@ const initialState = {
     
 }
 
-//get user off session
 const GET_USER = 'GET_USER'
-//get user from session
 const LOGOUT = 'LOGOUT'
 
 export function getUser(userObj) {
-    console.log(userObj)
     return {
         type: GET_USER,
         payload: userObj
     }
 }
 
-
 export function logout() {
-    let action = {
+    return {
         type: LOGOUT,
         payload: axios.post('/api/logout') 
     }
-    return action
 }
 
 
@@ -47,13 +42,8 @@ export default function userReducer(state = initialState, action) {
                     user_title: payload.user_title,
                 }
             }
-    
-        case LOGOUT + '_PENDING':
-            return {...state, }
-        case LOGOUT + '_FULFILLED':
+        case LOGOUT:
             return {...initialState, error: false}
-        case LOGOUT + '_REJECTED':
-            return {...state, loading: false, error: true, errorMessage: action.payload.response.data}
         default:
             return state
     }
