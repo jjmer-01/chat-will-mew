@@ -1,8 +1,28 @@
+.h1-reg {
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.h2-reg {
+    font-family: 'Shrikhand', cursive;
+    font-size: 20px;
+    font-weight: 200;
+    color: #ffffff;
+    margin-bottom: 30px;
+    text-shadow: -2px 2px 2px orange;
+}
+
 .reg-comp {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #53929b;
+    // background-image: linear-gradient(#e95d2a, #f5e258, #d6f1c4);
+    height: 100vh;
 }
 
 .reg-form {

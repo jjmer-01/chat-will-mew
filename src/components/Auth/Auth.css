@@ -1,23 +1,18 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
+.h1-auth {
   font-family: 'Monoton', cursive;
   font-size: 50px;
-  font-weight: 300;
   margin-top: 100px;
   margin-bottom: 20px;
-  color: #e95d2a;
+  color: #ffffff;
 }
 
-h2 {
+.h2-auth {
   font-family: 'Shrikhand', cursive;
   font-size: 20px;
   font-weight: 200;
-  color: #d6f1c4;
+  color: #ffffff;
   margin-bottom: 30px;
+  text-shadow: -2px 2px 2px orange;
 }
 
 p {
@@ -39,12 +34,16 @@ button {
   font-family: 'Dosis', sans-serif;
   font-size: 1em;
   font-weight: 800;
-  background-color: #d6f1c4;
+  background-color: orange;
   color: #2E2A39;
   margin: 5px;
   width: 200px;
   padding: 5px;
   border-radius: 10px;
+}
+
+button:hover {
+  border: 3px solid white;
 }
 
 input {
@@ -54,6 +53,7 @@ input {
 }
 
 .auth-comp {
+  background-color: #53929b;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,6 +67,7 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 100vh;
 }
 
 .auth-form {

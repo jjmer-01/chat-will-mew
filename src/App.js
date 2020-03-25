@@ -22,10 +22,10 @@ class App extends Component {
           )
         : (this.props.location.pathname === '/register' 
           ? <Register /> 
-          : ( <>
+          : ( <div className="nav-routes-body">
               <Nav />
               {routes}
-              </>
+              </div>
             ))}
       </div>
   

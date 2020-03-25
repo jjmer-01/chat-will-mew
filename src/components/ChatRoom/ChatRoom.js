@@ -137,34 +137,27 @@ class ChatRoom extends Component {
                 socket = {this.socket}
                 room_id = {this.props.match.params} />
             })}
-        
-            {/* <button
-                onClick={this.toggleTaskVisible}>
-                NEW TASK
+
+            {this.state.chatVisible === false ? null :
+            <div id='message-fields'>
+            <textarea
+                name="message_text" 
+                value={this.state.message_text}
+                placeholder="say it here!"
+                type="textarea"
+                onChange={(e) => this.handleChange(e.target)} />
+            <button id='send-message'
+                onClick={this.handleAddMessage}>
+                    <i class="far fa-paper-plane fa-lg"></i>
                 </button>
-            <div>
-                {this.state.taskVisible === false ? null :
-                    <>
-                    <input
-                        type="date"
-                        placeholder="task due date" />
-                    <input
-                        type="text"
-                        placeholder="Assigned To Search Placeholder" />
-                    <input
-                        placeholder="task"
-                        type="textarea" />
-                    <button>Submit</button>
-                    </>
-                }
-            </div> */}
+            </div>}
+        
             <div className='new-chat-form'>
                 <div className='new-chat-button'
                     onClick={this.toggleChatVisible}>
                     <i className="fas fa-plus"></i>
                 </div>
-                {/* <div id="message-fields"> */}
-                    {this.state.chatVisible === false ? null :
+                {/* {this.state.chatVisible === false ? null :
                         <div id='message-fields'>
                         <textarea
                             name="message_text" 
@@ -176,9 +169,7 @@ class ChatRoom extends Component {
                             onClick={this.handleAddMessage}>
                                 <i class="far fa-paper-plane fa-lg"></i>
                             </button>
-                        </div>
-                    }
-                {/* </div> */}
+                        </div> */}
             </div>
             
             

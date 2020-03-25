@@ -31,7 +31,8 @@ class Nav extends Component {
     render() {
         return (
             <div className="nav-comp">
-                <div>
+                <div className="nav-option-container">
+                <div className="nav-options">
                     <div className="show-menu-toggle chat-menu-icon"
                         onClick={this.toggleCmenuVisible}>
                         <i className="fas fa-bars fa-lg"></i>
@@ -45,13 +46,15 @@ class Nav extends Component {
                     </div>       
                 </div>
 
+                <div className="nav-options">
                 <Link 
                     className="dash-header"
                     to={'/dash'}>
                     <h1>aC</h1>
                     </Link>
-
-                <div>
+                </div>
+                
+                <div className="nav-options">
                     <div className="show-menu-toggle user-menu-icon"
                         onClick={this.toggleUmenuVisible}>
                         <i className="far fa-user-circle fa-lg"></i>
@@ -62,6 +65,8 @@ class Nav extends Component {
                         : <UserMenu />}
                     </div>
                 </div>  
+                </div>
+                
             </div>
         )
     }

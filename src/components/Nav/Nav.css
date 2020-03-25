@@ -1,17 +1,27 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 h1 {
   color: #d6f1c4;
-  margin-top: 20px;
+  margin: 10px;
+  font-family: 'Monoton', cursive;
+  font-size: 50px;
+  color: #ffffff;
 }
 
 .nav-comp {
-  background-color: #e95d2a;
+  background-color: orange;
   position: -webkit-sticky;
   position: sticky;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.nav-option-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -25,19 +35,26 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 5px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.nav-options {
+  height: auto;
 }
 
 .dash-header {
   text-decoration: none;
 }
 
-.show-menu-toggle {
-  position: absolute;
+.fa-bars {
+  color: #d6f1c4;
+  margin-left: 15px;
 }
 
-.fa-bars, .fa-user-circle {
+.fa-user-circle {
   color: #d6f1c4;
+  margin-right: 15px;
 }
 
 .chat-room-container {
@@ -53,7 +70,7 @@ h1 {
           align-items: flex-start;
   position: absolute;
   top: 90px;
-  left: 5px;
+  left: 0px;
 }
 
 .user-menu-cont {

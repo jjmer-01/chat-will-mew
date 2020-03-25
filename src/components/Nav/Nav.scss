@@ -1,37 +1,45 @@
-* {
-    margin: 0;
-    padding: 0;
-    // box-sizing: border-box;
-}
+
 
 h1 {
     color: #d6f1c4;
-    margin-top: 20px;
+    margin: 10px;
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
+    color: #ffffff;
 }
 
 .nav-comp {
-    background-color: #e95d2a;
-    // width: 100vw;
-    // height: 75px;
+    background-color: orange;
     position: sticky;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.nav-option-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
-    // box-sizing: border-box;
+    align-content: center;
+}
+
+.nav-options {
+    height: auto;
 }
 
 .dash-header {
     text-decoration: none;
    }
 
-.show-menu-toggle {
-    position: absolute;
+.fa-bars {
+    color: #d6f1c4;
+    margin-left: 15px;
 }
 
-.fa-bars, .fa-user-circle {
+.fa-user-circle {
     color: #d6f1c4;
+    margin-right: 15px;
 }
 
 .chat-room-container {
@@ -40,7 +48,7 @@ h1 {
     align-items: flex-start;
     position: absolute;
     top: 90px;
-    left: 5px;
+    left: 0px;
 }
 
 .user-menu-cont {

@@ -14,7 +14,7 @@ class Dash extends Component {
                         render={() => (
                             <div className="dash-comp">
                                 <i className="far fa-arrow-alt-circle-up fa-2x"></i>
-                                <p>Join a Conversation</p>
+                                <h2 className="h2-high-contrast">Join a Conversation</h2>
                             </div>
                         )}
                     />

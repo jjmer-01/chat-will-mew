@@ -40,8 +40,8 @@ class Auth extends Component {
     render() {
         return (
         <div className="auth-comp">
-            <h1>ahnChat</h1>
-            <h2>a harmless, necessary chat</h2>
+            <h1 className="h1-auth">ahnChat</h1>
+            <h2 className="h2-auth">a harmless, necessary chat</h2>
             <div className="auth-form">
                 <label htmlFor="user_email">EMAIL:&nbsp; 
                 <input 

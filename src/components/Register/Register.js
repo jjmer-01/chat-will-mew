@@ -44,8 +44,8 @@ class Register extends Component {
     render() {
         return (
             <div className="reg-comp">
-            <h1>ahnChat</h1>
-            <h2>a harmless, necessary chat</h2>
+            <h1 className="h1-reg">ahnChat</h1>
+            <h2 className="h2-reg">a harmless, necessary chat</h2>
             <div className="reg-form">
                 <label htmlFor="user_email">EMAIL:&nbsp; 
                 <input 

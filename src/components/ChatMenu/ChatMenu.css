@@ -8,18 +8,18 @@ Link {
 }
 
 li {
-  text-decoration: none;
+  list-style: none;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
   font-family: 'Dosis', sans-serif;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
   padding: 3px;
   margin: 3px;
 }
 
 ul {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .rooms-list {
@@ -28,7 +28,7 @@ ul {
 }
 
 .chat-menu-comp {
-  background-color: orange;
+  background-color: #8a8a8a;
   max-height: 80vh;
   max-width: 85vw;
   position: relative;

@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+h2 {
+  color: white;
+}
+
 .chat-room-comp {
   background-color: #d6f1c4;
 }
@@ -23,6 +27,7 @@
           align-items: center;
   -webkit-box-shadow: 0 7px 18px 0 rgba(0, 0, 0, 0.26);
           box-shadow: 0 7px 18px 0 rgba(0, 0, 0, 0.26);
+  border: 5px solid white;
 }
 
 .chat-room-form {
@@ -43,12 +48,12 @@
   display: flex;
   text-align: center;
   margin: auto;
+  color: white;
 }
 
 #message-fields {
   background-color: #e95d2a;
   width: 60vw;
-  position: fixed;
   bottom: 20px;
   left: 20px;
   padding: 10px;
