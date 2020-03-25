@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
+import { classNamePrefix } from 'react-select'
 import { withRouter, Redirect } from 'react-router-dom'
 
 // import { getUser } from '../../ducks/userReducer'
@@ -68,12 +69,6 @@ class NewRoomForm extends Component {
         .then(res => {
             console.log(res.data)
             this.setState({newRoomId: res.data.room_id, redirect: true})
-            // this.setState({room_id: res.data.room_id})
-            // what do you want to have happen once the chat room is created? You can push to the route and go into the room, or give the user a success message
-            // console.log(res.data)
-            // console.log(this.props.history)
-            // this.props.history.push(`/chatroom/${res.data.room_id}`) //Catie's (doesn't redirect)
-            // return <Redirect to={{pathname: `/chatroom/${res.data.room_id}`}}/> //Cole & Scott's (doesn't redirect)
         })
     }
 

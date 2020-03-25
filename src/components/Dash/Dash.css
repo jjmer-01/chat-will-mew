@@ -1,13 +1,13 @@
 .h2-high-contrast {
   color: #ffffff;
   text-shadow: -4px 2px 2px #e95d2a;
+  font-family: 'Shrikhand', cursive;
   padding: 10px;
   font-size: 30px;
 }
 
 .dash-comp {
-  background-color: #d6f1c4;
-  color: #643754;
+  color: #e95d2a;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;

@@ -51,17 +51,17 @@ class ChatMenu extends Component {
         return (
             <div className="chat-menu-comp hide-menu" id="chat-menu">
                 <div>
-                    <div className="search-input">
-                        <input 
-                            placeholder="Search Threads & Direct Messages"
-                            name="search_text"
-                            value={this.state.search_text}
-                            onChange={(e) => this.handleSearchInput(e)} />
-                        <div
-                            onClick={this.handleSearch}>
-                                <i className="fas fa-search fa-lg"></i>
-                                </div>
-                    </div>
+                <div className="search-input">
+                    <input 
+                        placeholder="Search all rooms"
+                        name="search_text"
+                        value={this.state.search_text}
+                        onChange={(e) => this.handleSearchInput(e)} />
+                    <button className="search-rooms-btn"
+                        onClick={this.handleSearch}>
+                        <i className="fas fa-search fa-lg"></i>
+                        </button>
+                </div>
                     
                     <ul>
                     {this.state.filteredRooms.map(filteredRooms => {
@@ -77,7 +77,7 @@ class ChatMenu extends Component {
                         })}
                     </ul>
                         <br />
-                        <h2>My Rooms</h2>
+                        <h2 id='h2-chat-menu'>My Rooms</h2>
                     <ul>
                     {this.props.rooms.map(rooms => {
                         // console.log('hit this.props.rooms', this.props.rooms)

@@ -4,11 +4,19 @@
 }
 
 h2 {
-  color: white;
+  font-family: 'Shrikhand', cursive;
+  font-size: 24px;
+  color: #e95d2a;
+  text-shadow: -2px 2px 2px #ffffff;
+  margin: 10px;
 }
 
-.chat-room-comp {
-  background-color: #d6f1c4;
+p {
+  font-size: 20px;
+}
+
+textarea {
+  width: 75%;
 }
 
 .new-chat-button {
@@ -53,14 +61,44 @@ h2 {
 
 #message-fields {
   background-color: #e95d2a;
-  width: 60vw;
-  bottom: 20px;
-  left: 20px;
+  width: 75vw;
   padding: 10px;
   border-radius: 20px;
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #send-message {
   width: 40px;
+}
+
+.room-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#join-rm-btn {
+  width: 50px;
+  height: 30px;
 }
 /*# sourceMappingURL=ChatRoom.css.map */

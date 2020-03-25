@@ -9,7 +9,7 @@ Link {
 
 li {
   list-style: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(83, 146, 155, 0.6);
   border-radius: 5px;
   font-family: 'Dosis', sans-serif;
   font-size: 24px;
@@ -28,7 +28,7 @@ ul {
 }
 
 .chat-menu-comp {
-  background-color: #8a8a8a;
+  background-color: #ffffff;
   max-height: 80vh;
   max-width: 85vw;
   position: relative;
@@ -36,10 +36,11 @@ ul {
   -webkit-box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.26);
           box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.26);
   padding: 10px;
+  overflow: scroll;
 }
 
 .fa-search {
-  color: #d6f1c4;
+  color: #ffffff;
   padding: 3px;
 }
 
@@ -51,5 +52,24 @@ ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  background-color: rgba(83, 146, 155, 0.6);
+  padding: 3px;
+  margin: 3px;
+  border-radius: 5px;
+}
+
+.search-rooms-btn {
+  width: 35px;
+}
+
+#h2-chat-menu {
+  font-family: 'Shrikhand', cursive;
+  font-size: 20px;
+  color: #e95d2a;
 }
 /*# sourceMappingURL=ChatMenu.css.map */

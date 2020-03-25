@@ -13,7 +13,7 @@
     font-weight: 200;
     color: #ffffff;
     margin-bottom: 30px;
-    text-shadow: -2px 2px 2px orange;
+    text-shadow: -2px 2px 2px #e95d2a;
 }
 
 p {
@@ -46,6 +46,10 @@ button {
 
 button:hover {
     border: 3px solid white;
+}
+
+button:active {
+    border: 3px dotted white;
 }
 
 input {

@@ -1,6 +1,6 @@
 
-inputs {
-    background-color: grey;
+input {
+    height: 30px;
 }
 .react-select-container {
     color: grey;
@@ -8,5 +8,15 @@ inputs {
 }
 .newrm-form {
     color: black;
-    background-color: grey;
+    background-color:rgba(83, 146, 155, .6);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 3px;
+}
+
+.newrm-inputs {
+    padding: 3px;
+    margin: 3px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
 }

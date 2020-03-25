@@ -123,9 +123,10 @@ class ChatRoom extends Component {
         
         return (
         <div className="chat-room-comp">
-        <h2>{this.state.room.room_title}</h2>
-            <span className="room-controls">
-                <button
+            <span className="room-info">
+                <p>Room:</p>
+                <h2>{this.state.room.room_title}</h2>
+                <button id="join-rm-btn"
                     onClick={this.handleAddRoomUser}>join</button>
             </span>
             
@@ -140,16 +141,16 @@ class ChatRoom extends Component {
 
             {this.state.chatVisible === false ? null :
             <div id='message-fields'>
-            <textarea
-                name="message_text" 
-                value={this.state.message_text}
-                placeholder="say it here!"
-                type="textarea"
-                onChange={(e) => this.handleChange(e.target)} />
-            <button id='send-message'
-                onClick={this.handleAddMessage}>
-                    <i class="far fa-paper-plane fa-lg"></i>
-                </button>
+                <textarea
+                    name="message_text" 
+                    value={this.state.message_text}
+                    placeholder="say it here!"
+                    type="textarea"
+                    onChange={(e) => this.handleChange(e.target)} />
+                <button id='send-message'
+                    onClick={this.handleAddMessage}>
+                        <i className="far fa-paper-plane fa-lg"></i>
+                    </button>
             </div>}
         
             <div className='new-chat-form'>
@@ -157,22 +158,7 @@ class ChatRoom extends Component {
                     onClick={this.toggleChatVisible}>
                     <i className="fas fa-plus"></i>
                 </div>
-                {/* {this.state.chatVisible === false ? null :
-                        <div id='message-fields'>
-                        <textarea
-                            name="message_text" 
-                            value={this.state.message_text}
-                            placeholder="say it here!"
-                            type="textarea"
-                            onChange={(e) => this.handleChange(e.target)} />
-                        <button id='send-message'
-                            onClick={this.handleAddMessage}>
-                                <i class="far fa-paper-plane fa-lg"></i>
-                            </button>
-                        </div> */}
-            </div>
-            
-            
+            </div>    
 
         </div>
         )

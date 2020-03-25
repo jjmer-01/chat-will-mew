@@ -1,8 +1,12 @@
 h3 {
   font-family: 'Shrikhand', cursive;
+  font-size: 18px;
+  color: #ffffff;
+  text-shadow: -2px 2px 2px #53929b;
+  margin: 10px;
 }
 
-.message-display, .message-edit {
+.messages, .message-edit {
   background: rgba(255, 255, 255, 0.5);
   -webkit-box-shadow: 0 7px 18px 0 rgba(0, 0, 0, 0.26);
           box-shadow: 0 7px 18px 0 rgba(0, 0, 0, 0.26);
