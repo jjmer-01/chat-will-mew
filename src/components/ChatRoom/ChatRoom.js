@@ -4,6 +4,7 @@ import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import { getUser } from '../../ducks/userReducer'
 import { withRouter } from 'react-router'
+import axios from 'axios'
 
 import './ChatRoom.css'
 
@@ -31,7 +32,7 @@ class ChatRoom extends Component {
 
     componentDidMount = () => {
         // console.log('hit data', data)
-        console.log('componentDidMount')
+        // console.log('componentDidMount')
         this.socket = io()
         this.socket.emit('join room', {room_id: this.props.match.params.room}) //room variable is declared at the end of route(routes.js file)
         this.socket.on('room joined', data => {
@@ -86,7 +87,7 @@ class ChatRoom extends Component {
 
     handleAddMessage = async () => {
         // console.log('handleAddMessage this.state', this.state.value)
-        console.log('handleAddMessage this.props', this.props)
+        // console.log('handleAddMessage this.props', this.props)
         await this.socket.emit('chat sent', {
             room_id: this.props.match.params.room,
             user_id: this.props.id,
@@ -100,6 +101,13 @@ class ChatRoom extends Component {
             })
         })
         this.forceUpdate()
+    }
+
+    handleAddRoomUser = () => {
+        console.log(this.props.match.params.room)
+        axios.post(`/api/room_user/${+(this.props.match.params.room)}/${this.props.id}`)
+        .then(() => 'User sucessfully added to room!')
+        .catch(err => console.log(err))
     }
 
 
@@ -117,8 +125,8 @@ class ChatRoom extends Component {
         <div className="chat-room-comp">
         <h2>{this.state.room.room_title}</h2>
             <span className="room-controls">
-                <button>join</button>
-                <button>leave</button>
+                <button
+                    onClick={this.handleAddRoomUser}>join</button>
             </span>
             
             {this.state.messages.map((mess) => {
@@ -153,7 +161,7 @@ class ChatRoom extends Component {
             <div className='new-chat-form'>
                 <div className='new-chat-button'
                     onClick={this.toggleChatVisible}>
-                    <i class="fas fa-plus"></i>
+                    <i className="fas fa-plus"></i>
                 </div>
                 {/* <div id="message-fields"> */}
                     {this.state.chatVisible === false ? null :

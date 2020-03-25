@@ -1,2 +1,2 @@
 DELETE FROM room_users
-WHERE user_id = ${user_id};
+WHERE room_user_id = ${room_user_id};

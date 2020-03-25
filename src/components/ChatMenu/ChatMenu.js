@@ -59,7 +59,7 @@ class ChatMenu extends Component {
                             onChange={(e) => this.handleSearchInput(e)} />
                         <div
                             onClick={this.handleSearch}>
-                                <i class="fas fa-search fa-lg"></i>
+                                <i className="fas fa-search fa-lg"></i>
                                 </div>
                     </div>
                     
@@ -77,7 +77,6 @@ class ChatMenu extends Component {
                         })}
                     </ul>
                         <br />
-                    <button>My Tasks</button>
                         <h2>My Rooms</h2>
                     <ul>
                     {this.props.rooms.map(rooms => {

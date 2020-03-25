@@ -48,7 +48,7 @@ class Message extends Component {
     //delete function goes here (already have messageID on props)
 
     render() {
-        console.log(this.props)
+    // console.log(this.props)
     const {first_name, last_name, message_text} = this.props.mess
 
         return (
@@ -61,11 +61,11 @@ class Message extends Component {
                         <p>{message_text}</p>
                         <div className="edit-icon"
                             onClick={this.showEditInput}>
-                            <i class="fas fa-edit"></i>
+                            <i className="fas fa-edit"></i>
                             </div>
                         <div className="delete-icon"
                             onClick={this.handleDelete}>
-                            <i class="fas fa-trash"></i>
+                            <i className="fas fa-trash"></i>
                             </div>
                     </span>
                     

@@ -50,7 +50,8 @@ app.get('/api/room/:user_id', chatMenuCtrl.getRooms)
 app.get('/api/filteredRooms', chatMenuCtrl.getFilteredRooms) 
 
 //ENDPOINTS chatRoomCtrl
-app.post('/api/room_user/:room_id/:user_id', chatRoomCtrl.joinRoom)
+app.post('/api/room_user/:room_id/:user_id', chatRoomCtrl.addRoomUser)
+// app.delete('/api/room_user/:room_user_id', chatRoomCtrl.removeRoomUser)
 
 //ENDPOINTS userMenuCtrl
 // app.put('/api/user/:userId', userMenuCtrl.editUser)
@@ -117,14 +118,14 @@ io.on('connection', socket => {
         const dbObj = app.get('db')
         let message = await dbObj.messages.edit_message({message_text, message_id})
         console.log(message)
-        // let chats = await dbObj.messages.get_chats({room_id, user_id})
-        // socket.emit('edit dispatched', chats)
+        let chats = await dbObj.messages.get_chats({room_id, user_id})
+        socket.emit('edit dispatched', chats)
     })
 
     //delete chat and task
     socket.on('delete message', async data => {
         const { message_id } = data
-        console.log(message_id)
+        // console.log(message_id)
         const dbObj = app.get('db')
         let removedMessage = await dbObj.messages.delete_messages({message_id})
         socket.emit('delete dispatched', removedMessage)
