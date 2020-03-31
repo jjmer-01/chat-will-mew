@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-import { classNamePrefix } from 'react-select'
+// import { classNamePrefix } from 'react-select'
 import { withRouter, Redirect } from 'react-router-dom'
 
 // import { getUser } from '../../ducks/userReducer'

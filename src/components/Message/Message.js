@@ -58,7 +58,7 @@ class Message extends Component {
                 <div className="message-display">
                     <h3>{first_name} {last_name}</h3>
                     <span className="messages">
-                        <p>{message_text}</p>
+                        <p className='message-text'>{message_text}</p>
                         <div className="edit-icon"
                             onClick={this.showEditInput}>
                             <i className="fas fa-edit"></i>

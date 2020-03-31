@@ -2,7 +2,6 @@ h1 {
   color: #ffffff;
   margin: 10px;
   font-family: 'Monoton', cursive;
-  font-size: 50px;
   color: #ffffff;
 }
 
@@ -88,5 +87,31 @@ h1 {
   top: 70px;
   right: 10px;
   text-align: right;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 54px;
+  }
+  #mobile-header {
+    visibility: hidden;
+    font-size: 0;
+  }
+  #desktop-header {
+    visibility: visible;
+  }
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 44px;
+  }
+  #mobile-header {
+    visibility: visible;
+  }
+  #desktop-header {
+    visibility: hidden;
+    font-size: 0;
+  }
 }
 /*# sourceMappingURL=Nav.css.map */

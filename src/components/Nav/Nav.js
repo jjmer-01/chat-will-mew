@@ -50,7 +50,12 @@ class Nav extends Component {
                 <Link 
                     className="dash-header"
                     to={'/dash'}>
-                    <h1>aC</h1>
+                    <span>
+                        <h1>
+                            <div id='desktop-header'>ahnChat</div>
+                            <div id='mobile-header'>aC</div>
+                        </h1>  
+                    </span>
                     </Link>
                 </div>
                 

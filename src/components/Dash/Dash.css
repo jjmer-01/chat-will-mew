@@ -3,7 +3,6 @@
   text-shadow: -4px 2px 2px #e95d2a;
   font-family: 'Shrikhand', cursive;
   padding: 10px;
-  font-size: 30px;
 }
 
 .dash-comp {
@@ -17,5 +16,17 @@
 
 .fa-arrow-alt-circle-up {
   margin: 10px;
+}
+
+@media (min-width: 768px) {
+  .h2-high-contrast {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .h2-high-contrast {
+    font-size: 24px;
+  }
 }
 /*# sourceMappingURL=Dash.css.map */

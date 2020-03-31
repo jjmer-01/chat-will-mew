@@ -8,7 +8,6 @@ const express = require('express')
     messageCtrl = require('./messageCtrl')
     userMenuCtrl = require('./userMenuCtrl')
     socket = require('socket.io') //sockets
-    // bodyParser = require('body-parser') //sockets?? Didn't need this for the `Chatting on` message to show
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
     // const socketIo = require('socket.io')
     // const axios = require('axios')
